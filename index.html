@@ -4,9 +4,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#151412">
-  <meta name="description" content="Guia comercial copia e cola para o atendimento da campanha de Mechas + Finalização da W7M Barra da Tijuca.">
-  <title>Guia comercial da Taís | W7M Barra da Tijuca</title>
+  <meta name="description" content="Guia de atendimento no direct do Instagram da W7M New Concept para a ação de realinhamento capilar.">
+  <title>Guia do realinhamento | W7M New Concept Barra</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23151412'/%3E%3Cpath d='M13 18l8 29 11-19 11 19 8-29' fill='none' stroke='%23d2ad55' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <!--
+    Guia de atendimento no direct do Instagram da W7M New Concept, ação de realinhamento capilar (nov/2026).
+    Trace: w7m-guia-realinhamento-202611101724
+    Base: guia de mechas da W7M (mesmo design e componentes) + melhorias do guia Black Friday do Werner
+    (contador de vagas, avisos, textos sem [nome]).
+
+    Premissas assumidas:
+    1. Oferta: realinhamento capilar de R$ 650 por R$ 390 (PRECO_NORMAL / PRECO_ACAO), só na W7M New Concept, Barra.
+       Início 11/11/2026 (quarta). Sem data final pública: a ação fecha no 30º agendamento (VAGAS_TOTAL).
+    2. O anúncio leva direto para o direct do Instagram da W7M, sem ManyChat. Quem responde é a equipe W7M
+       (NOME_ATENDENTE ou quem estiver no dia). Os textos de cliente falam em "W7M"/"equipe", sem nome próprio.
+    3. Megahair: não entra na ação. Não está no anúncio, só no guia e na conversa. Quem tem megahair não ocupa vaga.
+    4. Pagamento: formas validadas com a unidade, sem política de sinal (regra do guia de mechas da W7M).
+    5. Progressiva, formol, composição e duração: a equipe confirma. O guia não afirma nada sobre isso.
+    6. O valor de R$ 390 vale como no anúncio, sem variação por comprimento (o anúncio não fala em comprimento).
+       A pergunta de comprimento e química é só informação para a equipe.
+    7. O estático 37 mostra R$ 399,00 por erro. O guia tem resposta para quem citar 399; vale R$ 390.
+    8. Fora da ação (depois das 30 vagas), o valor de referência é o "de" do anúncio, R$ 650.
+    9. Follow-up com intervalos de horas e de um dia, no máximo 2 ou 3 mensagens por situação.
+    10. Urgência só pelas 30 vagas. Sem "novembro e dezembro lotam" e sem prometer datas.
+    11. Aviso para Christopher e Bianca 5 vagas antes do fim (25 de 30) e no fechamento (30).
+  -->
   <style>
     :root {
       color-scheme: dark;
@@ -50,7 +72,7 @@
       line-height: 1.62;
     }
     button { font: inherit; }
-    button:focus-visible, a:focus-visible {
+    button:focus-visible, a:focus-visible, input:focus-visible {
       outline: 3px solid var(--gold-light);
       outline-offset: 3px;
     }
@@ -98,7 +120,25 @@
       font-size: clamp(1.05rem, 4.3vw, 1.35rem);
       font-weight: 600;
     }
-    .offer-strip span { color: var(--muted); font-size: .9rem; }
+    .offer-strip s { color: var(--muted); font-weight: 400; }
+    .offer-strip strong span, .offer-strip s { white-space: nowrap; }
+    .offer-strip > span { display: block; color: var(--muted); font-size: .9rem; }
+    .vagas-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: .7rem;
+      padding: .4rem .95rem;
+      border: 1px solid rgba(119, 181, 138, .4);
+      border-radius: 999px;
+      background: rgba(119, 181, 138, .1);
+      color: #d5ebdb;
+      font-size: .86rem;
+      font-weight: 700;
+    }
+    .vagas-pill .dot { width: .5rem; height: .5rem; border-radius: 50%; background: var(--success); }
+    .vagas-pill.esgotado { border-color: rgba(223, 133, 128, .45); background: rgba(223, 133, 128, .1); color: #f3d0cd; }
+    .vagas-pill.esgotado .dot { background: var(--danger); }
 
     main { min-height: 64vh; }
     .home { padding: 1rem 1rem 4rem; }
@@ -154,16 +194,20 @@
     }
     .phase-card:hover { border-color: rgba(210, 173, 85, .55); background: var(--surface-hover); }
     .phase-card:active { transform: scale(.98); }
+    .phase-card.full-width { grid-column: 1 / -1; min-height: 0; flex-direction: row; align-items: center; justify-content: flex-start; }
+    .phase-card.destaque { border-color: rgba(119, 181, 138, .4); }
     .phase-number {
       display: grid;
       width: 2.25rem;
       height: 2.25rem;
+      flex: 0 0 auto;
       place-items: center;
       border-radius: .7rem;
       background: rgba(210, 173, 85, .12);
       color: var(--gold);
       font-weight: 800;
     }
+    .phase-card.destaque .phase-number { background: rgba(119, 181, 138, .14); color: var(--success); }
     .phase-card strong { display: block; font-family: var(--serif); font-size: 1rem; line-height: 1.25; }
     .phase-card small { display: block; margin-top: .25rem; color: var(--muted); font-size: .78rem; line-height: 1.35; }
 
@@ -224,7 +268,7 @@
       font-size: .75rem;
       font-weight: 800;
     }
-    .flow-step p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .flow-step p { min-width: 0; margin: 0; color: var(--muted); font-size: .9rem; }
     .flow-step strong { color: var(--text); }
 
     .script-card {
@@ -261,8 +305,9 @@
       font-size: .72rem;
       font-weight: 800;
     }
+    .script-index.obj { background: var(--danger); }
     .script-toggle strong { min-width: 0; font-family: var(--serif); font-size: 1rem; font-weight: 600; }
-    .toggle-hint { color: var(--gold); font-size: .75rem; font-weight: 700; }
+    .toggle-hint { color: var(--gold); font-size: .75rem; font-weight: 700; white-space: nowrap; }
     .toggle-arrow { display: inline-block; margin-left: .2rem; transition: transform .2s ease; }
     .script-toggle[aria-expanded="true"] .toggle-arrow { transform: rotate(180deg); }
     .script-content { padding: 0 1rem 1rem; }
@@ -312,14 +357,17 @@
       padding: .6rem .85rem;
       cursor: pointer;
       color: var(--gold-light);
+      text-align: left;
       border: 1px solid var(--line);
       border-radius: .7rem;
       background: var(--bg-raised);
       font-weight: 700;
     }
     .phase-link:hover { border-color: rgba(210, 173, 85, .55); }
+    .phase-link.next { margin-top: 1.25rem; text-align: center; color: #17130d; border-color: var(--gold); background: var(--gold); }
+    .phase-link.next:hover { background: var(--gold-light); }
 
-    .note, .warning, .confirmed {
+    .note, .warning, .confirmed, .alerta {
       margin-top: .75rem;
       padding: .9rem 1rem;
       border-radius: .8rem;
@@ -328,10 +376,12 @@
     .note { border: 1px solid var(--line); background: var(--bg-raised); color: var(--muted); }
     .warning { border: 1px solid rgba(224, 184, 93, .32); background: rgba(224, 184, 93, .08); color: #e9d7ad; }
     .confirmed { border: 1px solid rgba(119, 181, 138, .32); background: rgba(119, 181, 138, .08); color: #c7dfce; }
-    .note strong, .warning strong, .confirmed strong { color: var(--text); }
+    .alerta { border: 1px solid rgba(223, 133, 128, .4); background: rgba(223, 133, 128, .09); color: #f1cfcc; }
+    .note strong, .warning strong, .confirmed strong, .alerta strong { color: var(--text); }
 
     .facts { display: grid; gap: .65rem; }
     .fact {
+      min-width: 0;
       padding: .85rem 1rem;
       border: 1px solid var(--line);
       border-radius: .8rem;
@@ -339,6 +389,48 @@
     }
     .fact strong { display: block; color: var(--gold-light); font-size: .85rem; }
     .fact span { display: block; margin-top: .18rem; color: var(--muted); }
+
+    /* contador de vagas */
+    .vagas-resumo {
+      padding: 1.1rem 1rem;
+      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--script);
+    }
+    .vagas-resumo .num { font-family: var(--serif); font-size: 2rem; font-weight: 600; line-height: 1.15; }
+    .vagas-resumo .sub { margin-top: .25rem; color: var(--muted); font-size: .85rem; }
+    .vagas-alerta { display: none; }
+    .vagas-alerta.show { display: block; }
+    .vagas-lista { display: grid; grid-template-columns: minmax(0, 1fr); gap: .5rem; margin-top: .75rem; }
+    .vaga-item {
+      display: flex;
+      min-width: 0;
+      min-height: 3.25rem;
+      align-items: center;
+      gap: .65rem;
+      padding: .5rem .8rem;
+      border: 1px solid var(--line-soft);
+      border-radius: .8rem;
+      background: var(--surface);
+    }
+    .vaga-item.ok { border-color: rgba(119, 181, 138, .5); background: rgba(119, 181, 138, .08); }
+    .vaga-item input[type=checkbox] { width: 1.5rem; height: 1.5rem; flex: 0 0 auto; margin: 0; accent-color: var(--success); cursor: pointer; }
+    .vaga-num { min-width: 1.5rem; flex: 0 0 auto; color: var(--muted); font-size: .88rem; font-weight: 800; }
+    .vaga-item.ok .vaga-num { color: var(--success); }
+    .vaga-item input[type=text] {
+      width: 100%;
+      min-width: 0;
+      flex: 1 1 auto;
+      padding: .4rem .1rem;
+      color: var(--text);
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      font: inherit;
+      font-size: .92rem;
+    }
+    .vaga-item input[type=text]:focus { outline: none; border-bottom-color: var(--gold); }
 
     .footer {
       padding: 2rem 1rem calc(2rem + env(safe-area-inset-bottom, 0px));
@@ -368,12 +460,14 @@
 
     @media (min-width: 44rem) {
       .app-header { padding-top: 2.7rem; }
-      .quick-start { grid-template-columns: 1.1fr .9fr; }
-      .phase-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .quick-start { grid-template-columns: 1fr 1fr; }
+      .phase-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
       .phase-card { min-height: 9.25rem; padding: 1.15rem; }
+      .phase-card.full-width { min-height: 0; }
       .phase-view { padding-right: 1.5rem; padding-left: 1.5rem; }
       .back-bar { margin-right: -1.5rem; margin-left: -1.5rem; padding-right: 1.5rem; padding-left: 1.5rem; }
       .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .vagas-lista { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (min-width: 64rem) {
       .home { padding-top: 1.5rem; }
@@ -390,15 +484,16 @@
 <body>
   <header class="app-header">
     <div class="shell">
-      <p class="brand">W7M Barra da Tijuca</p>
-      <h1>Guia comercial da Taís</h1>
-      <p>Scripts prontos para conduzir, com naturalidade, as conversas que chegam pelo Instagram.</p>
+      <p class="brand">W7M New Concept · Barra da Tijuca</p>
+      <h1>Guia de atendimento do realinhamento</h1>
+      <p>Para a <span class="nome-atendente">Thaís</span> ou quem estiver no direct da W7M. Textos prontos para copiar, da primeira mensagem ao pós-atendimento.</p>
     </div>
   </header>
 
   <div class="offer-strip">
-    <strong>Mechas + Finalização: de R$ 1.200 por R$ 750</strong>
-    <span>Atendimento humano pela equipe W7M no Instagram</span>
+    <strong>Realinhamento capilar de <s class="preco-normal">R$ 650</s> por <span class="preco-acao">R$ 390</span></strong>
+    <span>Apenas <span class="vagas-total">30</span> vagas · começa em 11/11 · direto no direct do Instagram da W7M</span>
+    <div class="vagas-pill" id="vagasPill"><span class="dot"></span><span class="vagas-status">Restam 30 vagas de 30</span></div>
   </div>
 
   <main>
@@ -406,339 +501,509 @@
       <div class="quick-start">
         <article class="intro-card">
           <h2 id="homeTitle">Use na ordem da conversa</h2>
-          <p>Abra a fase que corresponde ao momento do atendimento. Antes de copiar, troque os campos entre colchetes e ajuste a resposta ao que a pessoa já contou.</p>
+          <p>A pessoa toca no anúncio e cai direto no direct da W7M, já sabendo o preço e que são <span class="vagas-total">30</span> vagas. Abra a fase do momento da conversa, copie, ajuste se precisar e envie. Campos entre colchetes, como [dia] e [horário], você preenche antes de mandar.</p>
         </article>
         <article class="assumption-card">
-          <h2>Premissas deste guia</h2>
+          <h2>Combinado da ação</h2>
           <ul>
-            <li>A oferta confirmada é Mechas + Finalização, de R$ 1.200 por R$ 750.</li>
-            <li>Agenda, duração, pagamento, profissional e compatibilidade técnica precisam de confirmação.</li>
-            <li>Os anúncios pararam. Quem já conversou mantém R$ 750 até <span class="prazo-oferta">15/10</span>; depois, R$ 1.200. Os retornos seguem a fase 08.</li>
+            <li>Realinhamento capilar de <span class="preco-normal">R$ 650</span> por <span class="preco-acao">R$ 390</span>, só na W7M New Concept, na Barra. Começa em 11/11 (quarta).</li>
+            <li>São <span class="vagas-total">30</span> vagas. A ação fecha no <span class="vagas-total">30</span>º agendamento, sem data final divulgada.</li>
+            <li>Não inclui cabelo com megahair. O anúncio não fala disso: você explica na conversa, com calma.</li>
+            <li>Pagamento: confirme as formas com a unidade. Não fale em sinal.</li>
           </ul>
         </article>
       </div>
 
       <nav class="phase-grid" aria-label="Fases do atendimento">
-        <button class="phase-card" type="button" data-phase="visao">
+        <button class="phase-card full-width" type="button" data-phase="visao">
           <span class="phase-number">01</span>
-          <span><strong>Visão geral</strong><small>O caminho da conversa</small></span>
+          <span><strong>Visão geral</strong><small>O caminho da conversa e o que a pessoa viu no anúncio</small></span>
         </button>
         <button class="phase-card" type="button" data-phase="contato">
           <span class="phase-number">02</span>
-          <span><strong>Primeiro contato</strong><small>Acolher sem parecer resposta pronta</small></span>
+          <span><strong>Primeiro contato</strong><small>Confirmar a oferta e perguntar do megahair</small></span>
         </button>
         <button class="phase-card" type="button" data-phase="qualificacao">
           <span class="phase-number">03</span>
-          <span><strong>Qualificação</strong><small>Entender cabelo, desejo e histórico</small></span>
+          <span><strong>Qualificação</strong><small>Megahair, comprimento e química</small></span>
         </button>
-        <button class="phase-card" type="button" data-phase="oferta">
+        <button class="phase-card" type="button" data-phase="horarios">
           <span class="phase-number">04</span>
-          <span><strong>Apresentar a oferta</strong><small>Falar apenas do que está confirmado</small></span>
+          <span><strong>Valor + horários</strong><small>O preço e duas opções de agenda</small></span>
         </button>
-        <button class="phase-card" type="button" data-phase="agenda">
+        <button class="phase-card" type="button" data-phase="agendamento">
           <span class="phase-number">05</span>
-          <span><strong>Agenda e fechamento</strong><small>Consultar, confirmar e registrar</small></span>
+          <span><strong>Agendamento</strong><small>Confirmação, lembrete e remarcar</small></span>
         </button>
-        <button class="phase-card" type="button" data-phase="confirmacao">
+        <button class="phase-card" type="button" data-phase="pos">
           <span class="phase-number">06</span>
-          <span><strong>Confirmação</strong><small>Agendamento e lembrete</small></span>
+          <span><strong>Pós-atendimento</strong><small>Satisfação, avaliação e indicação</small></span>
         </button>
         <button class="phase-card" type="button" data-phase="objecoes">
           <span class="phase-number">07</span>
-          <span><strong>Objeções</strong><small>Sete respostas para dúvidas comuns</small></span>
+          <span><strong>Objeções</strong><small>Nove dúvidas com resposta pronta</small></span>
         </button>
         <button class="phase-card" type="button" data-phase="followup">
           <span class="phase-number">08</span>
-          <span><strong>Follow-up por situação</strong><small>Retomar quem já conversou, com etiquetas</small></span>
-        </button>
-        <button class="phase-card" type="button" data-phase="pos">
-          <span class="phase-number">09</span>
-          <span><strong>Pós-atendimento</strong><small>Satisfação, reclamação e indicação</small></span>
+          <span><strong>Follow-up</strong><small>Por situação, mensagens curtas</small></span>
         </button>
         <button class="phase-card" type="button" data-phase="utilidades">
+          <span class="phase-number">09</span>
+          <span><strong>Utilidades</strong><small>Ausência, endereço e resumo</small></span>
+        </button>
+        <button class="phase-card full-width destaque" type="button" data-phase="vagas">
           <span class="phase-number">10</span>
-          <span><strong>Utilidades</strong><small>Ausência, checagens e regras de ouro</small></span>
+          <span><strong>Contador de vagas</strong><small><span class="vagas-status">Restam 30 vagas de 30</span> · marque cada agendamento</small></span>
+        </button>
+        <button class="phase-card full-width" type="button" data-phase="regras">
+          <span class="phase-number">11</span>
+          <span><strong>Regras de ouro</strong><small>Leia antes do primeiro atendimento</small></span>
         </button>
       </nav>
     </section>
 
+    <!-- 01 VISÃO GERAL -->
     <section class="phase-view" id="phase-visao" data-title="Visão geral" hidden>
       <div class="back-bar"><button class="back-button" type="button">Voltar</button><span class="phase-title">Visão geral</span></div>
-      <p class="section-intro">O objetivo é levar a conversa do interesse inicial até a consulta de agenda, sempre no Instagram da W7M.</p>
+      <p class="section-intro">O caminho da pessoa, do anúncio até a cadeira do salão. Tudo acontece no direct do Instagram da W7M, sem resposta automática.</p>
       <div class="flow">
-        <div class="flow-step"><span>1</span><p><strong>Acolha.</strong> Use o nome da pessoa e reconheça o interesse.</p></div>
-        <div class="flow-step"><span>2</span><p><strong>Entenda.</strong> Faça poucas perguntas por mensagem.</p></div>
-        <div class="flow-step"><span>3</span><p><strong>Contextualize a foto.</strong> Explique por que ela ajuda antes de pedir.</p></div>
-        <div class="flow-step"><span>4</span><p><strong>Apresente a oferta.</strong> Informe serviço, valores e unidade.</p></div>
-        <div class="flow-step"><span>5</span><p><strong>Consulte a equipe.</strong> Confirme agenda e qualquer condição operacional.</p></div>
-        <div class="flow-step"><span>6</span><p><strong>Feche no Instagram.</strong> Registre dia, horário e orientações validadas.</p></div>
+        <div class="flow-step"><span>1</span><p><strong>Anúncio.</strong> Ela vê o antes e depois, o preço e toca para mandar mensagem. Cai direto no direct da W7M.</p></div>
+        <div class="flow-step"><span>2</span><p><strong>Primeiro contato.</strong> Você confirma a oferta e pergunta se o cabelo tem megahair.</p></div>
+        <div class="flow-step"><span>3</span><p><strong>Qualificação.</strong> Sem megahair, uma pergunta sobre comprimento e química, só para informar a equipe.</p></div>
+        <div class="flow-step"><span>4</span><p><strong>Valor + dois horários.</strong> Depois de ver a agenda com a equipe.</p></div>
+        <div class="flow-step"><span>5</span><p><strong>Agendamento.</strong> Confirmação com endereço e a vaga marcada no contador.</p></div>
+        <div class="flow-step"><span>6</span><p><strong>Véspera e depois.</strong> Lembrete um dia antes. Depois do atendimento, satisfação, avaliação no Google e indicação.</p></div>
       </div>
-      <div class="warning"><strong>Regra técnica:</strong> a conversa comercial não substitui a avaliação do cabelo. Não prometa resultado antes dessa avaliação.</div>
+
+      <article class="script-card">
+        <button class="script-toggle" type="button" aria-expanded="true" aria-controls="panel-visao-1">
+          <span class="script-index">✓</span><strong>O que a pessoa viu no anúncio</strong><span class="toggle-hint">Fechar <span class="toggle-arrow">⌄</span></span>
+        </button>
+        <div class="script-content" id="panel-visao-1">
+          <div class="facts">
+            <div class="fact"><strong>Vídeo com música</strong><span>Antes e depois com os textos “Acorde pronta todas as manhãs!”, “Realinhamento capilar”, “De R$ 650 por R$ 390,00”, “Agende agora” e “Barra”. O vídeo não fala das <span class="vagas-total">30</span> vagas.</span></div>
+            <div class="fact"><strong>Quatro imagens</strong><span>Antes e depois, “O cabelo que você quer ter toda manhã!” ou “Acorde pronta todas as manhãs!”, preço, “Apenas 30 vagas!”, “Agende agora”, “Barra” e o logo da W7M.</span></div>
+            <div class="fact"><strong>O que nenhum anúncio diz</strong><span>Que megahair fica fora, o endereço completo, as formas de pagamento e uma data final.</span></div>
+            <div class="fact"><strong>Quem atende</strong><span>A equipe da W7M, pelo direct. A pessoa não passa por WhatsApp nem por robô.</span></div>
+          </div>
+          <div class="warning"><strong>Uma das imagens saiu com R$ 399,00 por erro.</strong> O valor certo é <span class="preco-acao">R$ 390</span>. Se a pessoa falar em 399, use a mensagem 2 do Primeiro contato.</div>
+        </div>
+      </article>
+
+      <div class="warning"><strong>Megahair não aparece no anúncio.</strong> A pessoa não sabe dessa regra. Por isso a pergunta vem logo no começo, antes dos horários, e a resposta é sempre gentil.</div>
+      <div class="note"><strong>A conversa não substitui a avaliação.</strong> Quem avalia o cabelo é a equipe, no salão. Não prometa resultado nem quanto tempo dura.</div>
+
+      <button class="phase-link next" type="button" data-phase="contato">Começar pelo Primeiro contato</button>
     </section>
 
+    <!-- 02 PRIMEIRO CONTATO -->
     <section class="phase-view" id="phase-contato" data-title="Primeiro contato" hidden>
       <div class="back-bar"><button class="back-button" type="button">Voltar</button><span class="phase-title">Primeiro contato</span></div>
-      <p class="section-intro">A primeira resposta deve reconhecer a mensagem recebida. Personalize o começo para não soar genérico.</p>
+      <p class="section-intro">Ela já viu o preço e as vagas. Confirme a oferta em um balão e mande a pergunta do megahair logo em seguida, sem esperar resposta. Tente responder em menos de 5 minutos.</p>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="true" aria-controls="panel-contato-1">
-          <span class="script-index">1</span><strong>Resposta inicial</strong><span class="toggle-hint">Fechar <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index">1</span><strong>Resposta inicial, em dois balões</strong><span class="toggle-hint">Fechar <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-contato-1">
-          <p class="script-text" id="script-contato-1">Oi, [nome]. Sou a Taís, da W7M Barra da Tijuca. Vi sua mensagem sobre Mechas + Finalização. Como está seu cabelo hoje e que mudança você está buscando?</p>
-          <button class="copy-button" type="button" data-copy="script-contato-1">Copiar mensagem</button>
-          <div class="note"><strong>Personalize:</strong> se a pessoa já explicou o que deseja, reconheça essa informação e faça só a próxima pergunta necessária.</div>
+          <p class="script-label">1º balão · se quem responde é a Thaís</p>
+          <p class="script-text" id="script-contato-1a-thais">Oi, tudo bem? Aqui é a Thaís, da W7M New Concept, na Barra. Que bom que você chamou!
+
+O realinhamento capilar está de <span class="preco-normal">R$ 650</span> por <span class="preco-acao">R$ 390</span>, e são apenas <span class="vagas-total">30</span> vagas.</p>
+          <button class="copy-button" type="button" data-copy="script-contato-1a-thais">Copiar mensagem</button>
+
+          <p class="script-label">1º balão · se quem responde é a Vanessa</p>
+          <p class="script-text" id="script-contato-1a-vanessa">Oi, tudo bem? Aqui é a Vanessa, da W7M New Concept, na Barra. Que bom que você chamou!
+
+O realinhamento capilar está de <span class="preco-normal">R$ 650</span> por <span class="preco-acao">R$ 390</span>, e são apenas <span class="vagas-total">30</span> vagas.</p>
+          <button class="copy-button" type="button" data-copy="script-contato-1a-vanessa">Copiar mensagem</button>
+
+          <p class="script-label">1º balão · sem nome (equipe)</p>
+          <p class="script-text" id="script-contato-1a">Oi, tudo bem? Aqui é da W7M New Concept, na Barra. Que bom que você chamou!
+
+O realinhamento capilar está de <span class="preco-normal">R$ 650</span> por <span class="preco-acao">R$ 390</span>, e são apenas <span class="vagas-total">30</span> vagas.</p>
+          <button class="copy-button" type="button" data-copy="script-contato-1a">Copiar mensagem</button>
+
+          <p class="script-label">2º balão · logo em seguida</p>
+          <p class="script-text" id="script-contato-1b">Antes de eu ver os horários, me conta: hoje seu cabelo tem megahair?</p>
+          <button class="copy-button" type="button" data-copy="script-contato-1b">Copiar mensagem</button>
+          <div class="note"><strong>Ela já chegou perguntando algo?</strong> Responda a pergunta dela no 1º balão (horário, endereço, valor) e mantenha a pergunta do megahair no 2º.</div>
         </div>
       </article>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-contato-2">
-          <span class="script-index">2</span><strong>Quando a mensagem veio sem contexto</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index">2</span><strong>Falou em R$ 399</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-contato-2" hidden>
-          <p class="script-text" id="script-contato-2">Oi, [nome]. Sou a Taís, da W7M Barra da Tijuca. Você quer saber sobre a oferta de Mechas + Finalização ou tem outra dúvida sobre o atendimento?</p>
+          <p class="script-text" id="script-contato-2">Oi, tudo bem? O valor certo é <span class="preco-acao">R$ 390</span>. Um dos nossos anúncios saiu com R$ 399 por erro de digitação, mas nas <span class="vagas-total">30</span> vagas vale <span class="preco-acao">R$ 390</span>.
+
+Me conta: hoje seu cabelo tem megahair?</p>
           <button class="copy-button" type="button" data-copy="script-contato-2">Copiar mensagem</button>
         </div>
       </article>
+
+      <article class="script-card">
+        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-contato-3">
+          <span class="script-index">3</span><strong>Chegou falando de outra ação ou de outro valor</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+        </button>
+        <div class="script-content" id="panel-contato-3" hidden>
+          <p class="script-text" id="script-contato-3">Oi, tudo bem? Aqui é da W7M New Concept, na Barra. Essa ação que você viu já terminou. A de agora é o realinhamento capilar de <span class="preco-normal">R$ 650</span> por <span class="preco-acao">R$ 390</span>, com apenas <span class="vagas-total">30</span> vagas.
+
+Hoje seu cabelo tem megahair?</p>
+          <button class="copy-button" type="button" data-copy="script-contato-3">Copiar mensagem</button>
+          <div class="note"><strong>Exemplo:</strong> o realinhamento por R$ 290 de julho, que foi em Ipanema. Não ofereça aquele valor.</div>
+        </div>
+      </article>
+
+      <article class="script-card">
+        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-contato-4">
+          <span class="script-index">4</span><strong>Ação encerrada, depois das <span class="vagas-total">30</span> vagas</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+        </button>
+        <div class="script-content" id="panel-contato-4" hidden>
+          <p class="script-text" id="script-contato-4">Oi, tudo bem? As <span class="vagas-total">30</span> vagas do realinhamento por <span class="preco-acao">R$ 390</span> já foram preenchidas, e a ação encerrou. Se quiser, a equipe faz o realinhamento pelo valor normal, <span class="preco-normal">R$ 650</span>. Ou eu coloco seu nome na lista de espera e te chamo se abrir uma vaga.</p>
+          <button class="copy-button" type="button" data-copy="script-contato-4">Copiar mensagem</button>
+          <div class="note"><strong>Use quando o contador estiver em 0.</strong> Quem entrar na lista de espera, anote no fim do Contador de vagas.</div>
+        </div>
+      </article>
+
+      <button class="phase-link" type="button" data-phase="qualificacao" data-open="panel-qual-1">Respondeu que tem megahair → Qualificação, mensagem 1</button>
+      <button class="phase-link" type="button" data-phase="followup">Não respondeu → Follow-up</button>
+      <button class="phase-link next" type="button" data-phase="qualificacao">Próxima etapa: Qualificação</button>
     </section>
 
+    <!-- 03 QUALIFICAÇÃO -->
     <section class="phase-view" id="phase-qualificacao" data-title="Qualificação" hidden>
       <div class="back-bar"><button class="back-button" type="button">Voltar</button><span class="phase-title">Qualificação</span></div>
-      <p class="section-intro">Envie uma pergunta de cada vez. Espere a resposta antes de avançar.</p>
+      <p class="section-intro">Uma pergunta por vez. Você não avalia o cabelo pela conversa: anota o que ela contar e passa para a equipe, que avalia no salão.</p>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="true" aria-controls="panel-qual-1">
-          <span class="script-index">1</span><strong>Estado atual e resultado desejado</strong><span class="toggle-hint">Fechar <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index">1</span><strong>Tem megahair</strong><span class="toggle-hint">Fechar <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-qual-1">
-          <p class="script-text" id="script-qual-1">Entendi, [nome]. Hoje seu cabelo está natural, colorido ou já tem mechas? E qual resultado você gostaria de alcançar?</p>
+          <p class="script-text" id="script-qual-1">Obrigada por me contar! Nesta ação, o realinhamento não é feito em cabelo com megahair, por isso não consigo te encaixar nas <span class="vagas-total">30</span> vagas. Se quiser, vejo com a equipe da W7M outra opção para o seu cabelo e te respondo por aqui. Pode ser?</p>
           <button class="copy-button" type="button" data-copy="script-qual-1">Copiar mensagem</button>
+          <div class="note"><strong>Ela disse que sim?</strong> Passe o que ela contou para a equipe e responda só com o que a equipe confirmar. Não ofereça outro serviço nem outro valor por conta própria. Quem tem megahair não ocupa vaga.</div>
+
+          <p class="script-label">Disse que vai tirar o megahair antes</p>
+          <p class="script-text" id="script-qual-1b">Entendi! Vou confirmar com a equipe se dá para fazer o realinhamento depois que você tirar o megahair, e te respondo por aqui.</p>
+          <button class="copy-button" type="button" data-copy="script-qual-1b">Copiar mensagem</button>
+          <div class="warning"><strong>Só ofereça horário depois da resposta da equipe.</strong></div>
         </div>
       </article>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-qual-2">
-          <span class="script-index">2</span><strong>Pedir foto com contexto</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index">2</span><strong>Não tem megahair</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-qual-2" hidden>
-          <p class="script-text" id="script-qual-2">Para a equipe entender melhor o ponto de partida do seu cabelo, uma foto atual ajuda bastante. Pode me enviar uma foto de frente e outra de costas, com boa luz, se for possível?</p>
+          <p class="script-text" id="script-qual-2">Perfeito! Só mais uma coisa, para a equipe já saber como está o seu cabelo: ele é curto, médio ou longo? E você fez alguma química nos últimos meses, como coloração, descoloração ou progressiva?</p>
           <button class="copy-button" type="button" data-copy="script-qual-2">Copiar mensagem</button>
+          <div class="note"><strong>Quando pular:</strong> se ela já contou do cabelo ou já está pedindo horário, vá direto para Valor + horários.</div>
+          <div class="warning"><strong>Sem diagnóstico.</strong> Não diga se o cabelo pode ou não fazer nem como vai ficar. Anote a resposta e leve para a equipe junto com o pedido de horário. Química muito recente ou cabelo muito danificado? Consulte a equipe antes de oferecer horário.</div>
         </div>
       </article>
 
-      <article class="script-card">
-        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-qual-3">
-          <span class="script-index">3</span><strong>Histórico químico relevante</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
-        </button>
-        <div class="script-content" id="panel-qual-3" hidden>
-          <p class="script-text" id="script-qual-3">Você fez coloração, descoloração, progressiva ou outro procedimento químico recentemente? Se sim, me conta qual foi e quando você fez.</p>
-          <button class="copy-button" type="button" data-copy="script-qual-3">Copiar mensagem</button>
-          <div class="warning"><strong>Não avalie tecnicamente pela conversa.</strong> Registre as respostas e consulte a equipe quando houver dúvida.</div>
-        </div>
-      </article>
+      <button class="phase-link" type="button" data-phase="objecoes">Perguntou de progressiva, formol ou duração → Objeções</button>
+      <button class="phase-link next" type="button" data-phase="horarios">Próxima etapa: Valor + horários</button>
     </section>
 
-    <section class="phase-view" id="phase-oferta" data-title="Apresentar a oferta" hidden>
-      <div class="back-bar"><button class="back-button" type="button">Voltar</button><span class="phase-title">Apresentar a oferta</span></div>
-      <p class="section-intro">Fale do que está confirmado. Depois, conduza para a consulta de agenda.</p>
+    <!-- 04 VALOR + HORÁRIOS -->
+    <section class="phase-view" id="phase-horarios" data-title="Valor + horários" hidden>
+      <div class="back-bar"><button class="back-button" type="button">Voltar</button><span class="phase-title">Valor + horários</span></div>
+      <p class="section-intro">Antes de mandar, veja a agenda com a equipe e pegue dois horários de verdade. A mensagem termina na escolha do horário, assim fica fácil ela responder.</p>
 
       <article class="script-card">
-        <button class="script-toggle" type="button" aria-expanded="true" aria-controls="panel-oferta-1">
-          <span class="script-index">1</span><strong>Oferta completa</strong><span class="toggle-hint">Fechar <span class="toggle-arrow">⌄</span></span>
+        <button class="script-toggle" type="button" aria-expanded="true" aria-controls="panel-hor-1">
+          <span class="script-index">1</span><strong>Valor + dois horários</strong><span class="toggle-hint">Fechar <span class="toggle-arrow">⌄</span></span>
         </button>
-        <div class="script-content" id="panel-oferta-1">
-          <p class="script-text" id="script-oferta-1">[nome], a oferta é Mechas + Finalização, de R$ 1.200 por R$ 750, na W7M Barra da Tijuca. O atendimento é feito pela equipe W7M. Posso consultar a agenda para você?</p>
-          <button class="copy-button" type="button" data-copy="script-oferta-1">Copiar mensagem</button>
+        <div class="script-content" id="panel-hor-1">
+          <p class="script-text" id="script-hor-1">O realinhamento sai de <span class="preco-normal">R$ 650</span> por <span class="preco-acao">R$ 390</span>, aqui na W7M New Concept, na Barra. São apenas <span class="vagas-total">30</span> vagas na ação.
+
+Tenho [dia] às [horário] ou [dia] às [horário]. Qual fica melhor para você?</p>
+          <button class="copy-button" type="button" data-copy="script-hor-1">Copiar mensagem</button>
         </div>
       </article>
 
       <article class="script-card">
-        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-oferta-2">
-          <span class="script-index">2</span><strong>Quando pedirem mais detalhes</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-hor-2">
+          <span class="script-index">2</span><strong>Pediu outro dia ou horário</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
-        <div class="script-content" id="panel-oferta-2" hidden>
-          <p class="script-text" id="script-oferta-2">O que está confirmado é Mechas + Finalização por R$ 750 na unidade Barra da Tijuca. Sobre [dúvida da cliente], vou checar com a equipe e volto com a informação correta.</p>
-          <button class="copy-button" type="button" data-copy="script-oferta-2">Copiar mensagem</button>
+        <div class="script-content" id="panel-hor-2" hidden>
+          <p class="script-text" id="script-hor-2">Claro! Qual dia da semana fica melhor para você? E prefere manhã ou tarde? Vejo com a equipe e te passo as opções.</p>
+          <button class="copy-button" type="button" data-copy="script-hor-2">Copiar mensagem</button>
         </div>
       </article>
 
-      <div class="confirmed"><strong>Dados confirmados:</strong> serviço, valor anterior, valor da oferta, unidade e atendimento pela equipe W7M.</div>
+      <article class="script-card">
+        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-hor-3">
+          <span class="script-index">3</span><strong>Quer marcar mais para a frente</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+        </button>
+        <div class="script-content" id="panel-hor-3" hidden>
+          <p class="script-text" id="script-hor-3">Dá para ver sim. O valor de <span class="preco-acao">R$ 390</span> vale para as <span class="vagas-total">30</span> vagas da ação, e a data eu confirmo com a equipe. Me fala o dia que você quer, que eu vejo e te respondo.</p>
+          <button class="copy-button" type="button" data-copy="script-hor-3">Copiar mensagem</button>
+          <div class="note"><strong>A vaga só entra no contador quando o horário estiver confirmado.</strong> Data muito distante? Pergunte à equipe antes de aceitar.</div>
+        </div>
+      </article>
+
+      <div class="facts" style="margin-top: .75rem;">
+        <div class="fact"><strong>Os dois horários</strong><span>Em dias diferentes, um mais cedo e um mais tarde, para ela ter escolha.</span></div>
+        <div class="fact"><strong>Sem prometer data</strong><span>Só ofereça horário que a equipe confirmou na agenda.</span></div>
+        <div class="fact"><strong>Urgência só pelas vagas</strong><span>Não diga que novembro e dezembro lotam. Perto de uma pergunta, a pessoa responde com um mês e a conversa trava.</span></div>
+        <div class="fact"><strong>Depois de mandar</strong><span>Espere a resposta. Nada de “e aí?” no mesmo dia.</span></div>
+      </div>
+
+      <button class="phase-link" type="button" data-phase="objecoes">Vai pensar, achou caro ou perguntou de pagamento → Objeções</button>
+      <button class="phase-link" type="button" data-phase="followup">Não respondeu depois dos horários → Follow-up</button>
+      <button class="phase-link next" type="button" data-phase="agendamento">Próxima etapa: Agendamento</button>
     </section>
 
-    <section class="phase-view" id="phase-agenda" data-title="Agenda e fechamento" hidden>
-      <div class="back-bar"><button class="back-button" type="button">Voltar</button><span class="phase-title">Agenda e fechamento</span></div>
-      <p class="section-intro">Não ofereça horário antes de consultar a equipe. Use as preferências da cliente para orientar a busca.</p>
+    <!-- 05 AGENDAMENTO -->
+    <section class="phase-view" id="phase-agendamento" data-title="Agendamento" hidden>
+      <div class="back-bar"><button class="back-button" type="button">Voltar</button><span class="phase-title">Agendamento</span></div>
+      <p class="section-intro">Ela escolheu o horário. Mande a confirmação com o endereço completo e marque a vaga no contador.</p>
 
       <article class="script-card">
-        <button class="script-toggle" type="button" aria-expanded="true" aria-controls="panel-agenda-1">
-          <span class="script-index">1</span><strong>Pedir preferência</strong><span class="toggle-hint">Fechar <span class="toggle-arrow">⌄</span></span>
+        <button class="script-toggle" type="button" aria-expanded="true" aria-controls="panel-ag-1">
+          <span class="script-index">1</span><strong>Confirmação do agendamento</strong><span class="toggle-hint">Fechar <span class="toggle-arrow">⌄</span></span>
         </button>
-        <div class="script-content" id="panel-agenda-1">
-          <p class="script-text" id="script-agenda-1">Perfeito, [nome]. Vou consultar a equipe para ver os horários disponíveis. Você tem preferência por [dia ou período]?</p>
-          <button class="copy-button" type="button" data-copy="script-agenda-1">Copiar mensagem</button>
-        </div>
-      </article>
+        <div class="script-content" id="panel-ag-1">
+          <p class="script-text" id="script-ag-1">Agendamento confirmado!
 
-      <article class="script-card">
-        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-agenda-2">
-          <span class="script-index">2</span><strong>Retorno com opção confirmada</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
-        </button>
-        <div class="script-content" id="panel-agenda-2" hidden>
-          <p class="script-text" id="script-agenda-2">[nome], confirmei com a equipe e temos [dia] às [horário]. Esse horário funciona para você?</p>
-          <button class="copy-button" type="button" data-copy="script-agenda-2">Copiar mensagem</button>
-        </div>
-      </article>
-
-      <article class="script-card">
-        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-agenda-3">
-          <span class="script-index">3</span><strong>Sem opção compatível no momento</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
-        </button>
-        <div class="script-content" id="panel-agenda-3" hidden>
-          <p class="script-text" id="script-agenda-3">[nome], os horários que confirmei agora não batem com a sua preferência. Posso verificar outra possibilidade com a equipe e te retornar pelo Instagram?</p>
-          <button class="copy-button" type="button" data-copy="script-agenda-3">Copiar mensagem</button>
-        </div>
-      </article>
-    </section>
-
-    <section class="phase-view" id="phase-confirmacao" data-title="Confirmação" hidden>
-      <div class="back-bar"><button class="back-button" type="button">Voltar</button><span class="phase-title">Confirmação</span></div>
-      <p class="section-intro">Preencha somente com informações validadas. Se houver orientação adicional, confirme antes de enviar.</p>
-
-      <article class="script-card">
-        <button class="script-toggle" type="button" aria-expanded="true" aria-controls="panel-conf-1">
-          <span class="script-index">1</span><strong>Agendamento confirmado</strong><span class="toggle-hint">Fechar <span class="toggle-arrow">⌄</span></span>
-        </button>
-        <div class="script-content" id="panel-conf-1">
-          <p class="script-text" id="script-conf-1">Agendamento confirmado, [nome].
-
-Serviço: Mechas + Finalização
-Valor: R$ 750
-Unidade: W7M Barra da Tijuca
+Serviço: realinhamento capilar
 Dia: [dia]
 Horário: [horário]
+Valor: <span class="preco-acao">R$ 390</span>
+Local: W7M New Concept, Barra Business Center, Av. das Américas, 3301, bloco 2, loja 106, Barra da Tijuca (próximo ao Village Mall)
 
-[orientação confirmada pela equipe]
-
-Se precisar falar com a gente, pode responder por aqui.</p>
-          <button class="copy-button" type="button" data-copy="script-conf-1">Copiar mensagem</button>
+Qualquer coisa, é só falar com a gente por aqui.</p>
+          <button class="copy-button" type="button" data-copy="script-ag-1">Copiar mensagem</button>
+          <div class="confirmed"><strong>Mandou a confirmação?</strong> Marque a próxima vaga no Contador de vagas, com o @ ou o nome e o dia.</div>
+          <button class="phase-link" type="button" data-phase="vagas">Abrir o Contador de vagas</button>
         </div>
       </article>
 
       <article class="script-card">
-        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-conf-2">
-          <span class="script-index">2</span><strong>Lembrete</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-ag-2">
+          <span class="script-index">2</span><strong>Lembrete na véspera</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
-        <div class="script-content" id="panel-conf-2" hidden>
-          <p class="script-text" id="script-conf-2">Oi, [nome]. Passando para lembrar do seu atendimento de Mechas + Finalização na W7M Barra da Tijuca: [dia], às [horário]. Está tudo certo para você?</p>
-          <button class="copy-button" type="button" data-copy="script-conf-2">Copiar mensagem</button>
-          <div class="warning"><strong>Não acrescente política de sinal.</strong> Se a cliente perguntar, consulte a equipe e responda apenas com a condição confirmada.</div>
+        <div class="script-content" id="panel-ag-2" hidden>
+          <p class="script-text" id="script-ag-2">Oi, tudo bem? Passando para lembrar do seu realinhamento amanhã, [dia], às [horário], na W7M New Concept, no Barra Business Center (Av. das Américas, 3301, bloco 2, loja 106). Está tudo certo para você?</p>
+          <button class="copy-button" type="button" data-copy="script-ag-2">Copiar mensagem</button>
+        </div>
+      </article>
+
+      <article class="script-card">
+        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-ag-3">
+          <span class="script-index">3</span><strong>Pediu para remarcar</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+        </button>
+        <div class="script-content" id="panel-ag-3" hidden>
+          <p class="script-text" id="script-ag-3">Sem problema! Consigo [dia] às [horário] ou [dia] às [horário], e sua vaga no realinhamento por <span class="preco-acao">R$ 390</span> continua guardada. Qual fica melhor?</p>
+          <button class="copy-button" type="button" data-copy="script-ag-3">Copiar mensagem</button>
+          <div class="note"><strong>Cancelou de vez?</strong> Desmarque a vaga no contador e chame a primeira pessoa da lista de espera com a mensagem de Valor + horários.</div>
+        </div>
+      </article>
+
+      <div class="warning"><strong>Não acrescente política de sinal.</strong> Se perguntarem de pagamento, use a resposta das Objeções e confirme com a unidade.</div>
+
+      <button class="phase-link" type="button" data-phase="followup" data-open="panel-follow-5">Escolheu horário mas não confirmou → Follow-up, situação 5</button>
+      <button class="phase-link next" type="button" data-phase="pos">Próxima etapa: Pós-atendimento</button>
+    </section>
+
+    <!-- 06 PÓS-ATENDIMENTO -->
+    <section class="phase-view" id="phase-pos" data-title="Pós-atendimento" hidden>
+      <div class="back-bar"><button class="back-button" type="button">Voltar</button><span class="phase-title">Pós-atendimento</span></div>
+      <p class="section-intro">De 24 a 48 horas depois do atendimento, pergunte como ela está com o cabelo. Avaliação e indicação só entram depois de uma resposta positiva.</p>
+
+      <article class="script-card">
+        <button class="script-toggle" type="button" aria-expanded="true" aria-controls="panel-pos-1">
+          <span class="script-index">1</span><strong>Perguntar como ficou</strong><span class="toggle-hint">Fechar <span class="toggle-arrow">⌄</span></span>
+        </button>
+        <div class="script-content" id="panel-pos-1">
+          <p class="script-text" id="script-pos-1">Oi, tudo bem? Como está o cabelo depois do realinhamento? Conseguiu arrumar em casa do jeito que você gosta?</p>
+          <button class="copy-button" type="button" data-copy="script-pos-1">Copiar mensagem</button>
+        </div>
+      </article>
+
+      <article class="script-card">
+        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-pos-2">
+          <span class="script-index">2</span><strong>Pedir avaliação no Google</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+        </button>
+        <div class="script-content" id="panel-pos-2" hidden>
+          <p class="script-text" id="script-pos-2">Que bom que você gostou! Se puder, deixa uma avaliação da W7M no Google: [link da avaliação no Google]. Leva menos de 1 minuto e ajuda muito a gente. Obrigada!</p>
+          <button class="copy-button" type="button" data-copy="script-pos-2">Copiar mensagem</button>
+          <div class="note"><strong>Troque o colchete pelo link de avaliação da W7M no Google</strong> antes de mandar.</div>
+        </div>
+      </article>
+
+      <article class="script-card">
+        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-pos-3">
+          <span class="script-index">3</span><strong>Indicação, sem pressão</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+        </button>
+        <div class="script-content" id="panel-pos-3" hidden>
+          <p class="script-text" id="script-pos-3">Se alguma amiga quiser fazer o realinhamento, pode passar o Instagram da W7M para ela. Enquanto tiver vaga na ação, ela também faz por <span class="preco-acao">R$ 390</span>.</p>
+          <button class="copy-button" type="button" data-copy="script-pos-3">Copiar mensagem</button>
+          <div class="note"><strong>Contador em 0?</strong> Não mande esta. Fale só do Instagram da W7M, sem valor.</div>
+        </div>
+      </article>
+
+      <article class="script-card">
+        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-pos-4">
+          <span class="script-index">4</span><strong>Não gostou do resultado</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+        </button>
+        <div class="script-content" id="panel-pos-4" hidden>
+          <p class="script-text" id="script-pos-4">Sinto muito que não ficou como você esperava. Pode me contar o que aconteceu e, se puder, mandar uma foto? Vou passar tudo para a equipe avaliar e te respondo por aqui com o próximo passo.</p>
+          <button class="copy-button" type="button" data-copy="script-pos-4">Copiar mensagem</button>
+          <div class="warning"><strong>Não prometa retoque, reembolso ou solução.</strong> A equipe avalia primeiro.</div>
         </div>
       </article>
     </section>
 
+    <!-- 07 OBJEÇÕES -->
     <section class="phase-view" id="phase-objecoes" data-title="Objeções" hidden>
       <div class="back-bar"><button class="back-button" type="button">Voltar</button><span class="phase-title">Objeções</span></div>
-      <p class="section-intro">Responda à dúvida apresentada. Não empilhe argumentos nem pressione a pessoa a decidir.</p>
+      <p class="section-intro">Responda só a dúvida que ela fez. Não empilhe argumentos. Quando a resposta depende da equipe, diga que vai confirmar e volte com a informação certa.</p>
 
       <article class="script-card">
-        <button class="script-toggle" type="button" aria-expanded="true" aria-controls="panel-obj-1">
-          <span class="script-index">1</span><strong>Preço</strong><span class="toggle-hint">Fechar <span class="toggle-arrow">⌄</span></span>
+        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-obj-1">
+          <span class="script-index obj">?</span><strong>“É progressiva?”</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
-        <div class="script-content" id="panel-obj-1">
-          <p class="script-text" id="script-obj-1">Entendo, [nome]. A oferta reúne Mechas + Finalização por R$ 750. O valor anterior é R$ 1.200. Se fizer sentido para você, posso consultar a agenda da W7M Barra da Tijuca.</p>
+        <div class="script-content" id="panel-obj-1" hidden>
+          <p class="script-text" id="script-obj-1">Vou confirmar com a equipe como o realinhamento é feito e quais produtos eles usam, e te respondo por aqui. Prefiro te passar a informação certa.</p>
           <button class="copy-button" type="button" data-copy="script-obj-1">Copiar mensagem</button>
+          <div class="note"><strong>Não compare com progressiva, botox ou selagem.</strong> Quando a equipe responder, guarde a resposta e use a mesma em todas as conversas.</div>
         </div>
       </article>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-obj-2">
-          <span class="script-index">2</span><strong>“Vou pensar”</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index obj">?</span><strong>“Tem formol?”</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-obj-2" hidden>
-          <p class="script-text" id="script-obj-2">Tudo bem, [nome]. Pense com calma. Se surgir alguma dúvida sobre a oferta ou sobre o processo, pode me chamar por aqui.</p>
+          <p class="script-text" id="script-obj-2">Vou confirmar a composição dos produtos com a equipe e te respondo por aqui, certinho.</p>
           <button class="copy-button" type="button" data-copy="script-obj-2">Copiar mensagem</button>
+          <div class="warning"><strong>Não responda sim nem não sem a equipe confirmar.</strong></div>
         </div>
       </article>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-obj-3">
-          <span class="script-index">3</span><strong>Duração</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index obj">⌛</span><strong>“Quanto tempo dura?”</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-obj-3" hidden>
-          <p class="script-text" id="script-obj-3">[nome], a duração pode variar conforme o cabelo e o trabalho necessário. Vou consultar a equipe sobre o seu caso e volto com uma orientação mais segura.</p>
+          <p class="script-text" id="script-obj-3">Depende do seu cabelo e dos cuidados em casa, por isso a equipe te orienta no salão, depois de ver o seu cabelo. Não quero te prometer um prazo antes disso.</p>
           <button class="copy-button" type="button" data-copy="script-obj-3">Copiar mensagem</button>
+          <div class="note"><strong>Não cite semanas nem meses.</strong> Nem se ela insistir.</div>
         </div>
       </article>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-obj-4">
-          <span class="script-index">4</span><strong>Megahair</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index obj">!</span><strong>“Tenho megahair”</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-obj-4" hidden>
-          <p class="script-text" id="script-obj-4">[nome], preciso confirmar com a equipe se o serviço é compatível com o seu tipo de megahair e com o estado atual do cabelo. Pode me enviar uma foto e, se souber, dizer qual técnica foi usada?</p>
+          <p class="script-text" id="script-obj-4">Obrigada por me contar! Nesta ação, o realinhamento não é feito em cabelo com megahair, por isso não consigo te encaixar nas <span class="vagas-total">30</span> vagas. Se quiser, vejo com a equipe da W7M outra opção para o seu cabelo e te respondo por aqui. Pode ser?</p>
           <button class="copy-button" type="button" data-copy="script-obj-4">Copiar mensagem</button>
+          <button class="phase-link" type="button" data-phase="qualificacao" data-open="panel-qual-1">Vai tirar o megahair antes? → Qualificação, mensagem 1</button>
         </div>
       </article>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-obj-5">
-          <span class="script-index">5</span><strong>Forma de pagamento</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index obj">⌖</span><strong>“Fica longe para mim”</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-obj-5" hidden>
-          <p class="script-text" id="script-obj-5">[nome], vou confirmar com a unidade as formas de pagamento disponíveis e te respondo por aqui com a informação correta.</p>
+          <p class="script-text" id="script-obj-5">Entendo. O realinhamento por <span class="preco-acao">R$ 390</span> é só aqui na W7M New Concept, no Barra Business Center, Av. das Américas, 3301, perto do Village Mall. Se em algum dia da semana você passar pela Barra, me fala qual, que eu procuro um horário nesse dia.</p>
           <button class="copy-button" type="button" data-copy="script-obj-5">Copiar mensagem</button>
         </div>
       </article>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-obj-6">
-          <span class="script-index">6</span><strong>Medo de danificar o cabelo</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index obj">…</span><strong>“Vou pensar”</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-obj-6" hidden>
-          <p class="script-text" id="script-obj-6">Faz sentido ter esse cuidado, [nome]. A equipe precisa avaliar o estado do fio e seu histórico químico antes de orientar o procedimento. Se você enviar uma foto atual e contar o que já fez no cabelo, eu levo essas informações para a equipe.</p>
+          <p class="script-text" id="script-obj-6">Claro, fica à vontade. Só te aviso que são apenas <span class="vagas-total">30</span> vagas por <span class="preco-acao">R$ 390</span>. Quando elas fecharem, o realinhamento volta para <span class="preco-normal">R$ 650</span>.
+
+Quer que eu te mande dois horários? Assim você pensa já sabendo os dias.</p>
           <button class="copy-button" type="button" data-copy="script-obj-6">Copiar mensagem</button>
         </div>
       </article>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-obj-7">
-          <span class="script-index">7</span><strong>Pedido de atendimento pessoal por Márcio</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index obj">$</span><strong>“Tá caro”</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-obj-7" hidden>
-          <p class="script-text" id="script-obj-7">[nome], esta oferta é atendida pela equipe W7M. Posso verificar com a unidade qual profissional estará disponível para o seu caso, mas prefiro não prometer um nome antes dessa confirmação.</p>
+          <p class="script-text" id="script-obj-7">Entendo. Fora da ação, o realinhamento sai <span class="preco-normal">R$ 650</span>. Nas <span class="vagas-total">30</span> vagas, fica <span class="preco-acao">R$ 390</span>. Esse valor eu não consigo mudar, mas se fizer sentido para você, vejo um horário.</p>
           <button class="copy-button" type="button" data-copy="script-obj-7">Copiar mensagem</button>
+
+          <p class="script-label">Se ela não quiser</p>
+          <p class="script-text" id="script-obj-7b">Tudo bem! Se mudar de ideia enquanto ainda tiver vaga, é só me chamar aqui.</p>
+          <button class="copy-button" type="button" data-copy="script-obj-7b">Copiar mensagem</button>
+          <div class="note"><strong>Não discuta valor.</strong> Não ofereça outro desconto nem parcelamento por conta própria.</div>
+        </div>
+      </article>
+
+      <article class="script-card">
+        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-obj-8">
+          <span class="script-index obj">$</span><strong>“Quais as formas de pagamento?”</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+        </button>
+        <div class="script-content" id="panel-obj-8" hidden>
+          <p class="script-text" id="script-obj-8">Vou confirmar com a unidade as formas de pagamento e te respondo por aqui.</p>
+          <button class="copy-button" type="button" data-copy="script-obj-8">Copiar mensagem</button>
+          <div class="warning"><strong>Não fale em sinal nem em Pix antecipado.</strong> Responda só com o que a unidade confirmar.</div>
+        </div>
+      </article>
+
+      <article class="script-card">
+        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-obj-9">
+          <span class="script-index obj">?</span><strong>“É com o Márcio?”</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+        </button>
+        <div class="script-content" id="panel-obj-9" hidden>
+          <p class="script-text" id="script-obj-9">O realinhamento desta ação é feito pela equipe da W7M New Concept, aqui na Barra.</p>
+          <button class="copy-button" type="button" data-copy="script-obj-9">Copiar mensagem</button>
+
+          <p class="script-label">Se ela insistir em fazer com o Márcio</p>
+          <p class="script-text" id="script-obj-9b">Entendi. Vou ver com a equipe se é possível e te respondo por aqui. Não quero te prometer antes de confirmar.</p>
+          <button class="copy-button" type="button" data-copy="script-obj-9b">Copiar mensagem</button>
+          <div class="note"><strong>Não prometa o Márcio,</strong> nem horário com ele, nem outro valor. Quem decide é a equipe.</div>
         </div>
       </article>
     </section>
 
+    <!-- 08 FOLLOW-UP -->
     <section class="phase-view" id="phase-followup" data-title="Follow-up por situação" hidden>
       <div class="back-bar"><button class="back-button" type="button">Voltar</button><span class="phase-title">Follow-up por situação</span></div>
-      <p class="section-intro">Os anúncios pararam. Agora o trabalho é retomar quem já conversou com a W7M e não marcou. Veja onde cada conversa parou, marque a etiqueta e use os scripts daquela situação. São no máximo três mensagens por situação.</p>
+      <p class="section-intro">Muita gente pergunta e some. Veja onde a conversa parou, marque a etiqueta e use as mensagens daquela situação. São curtas, no máximo duas ou três por situação, com intervalos de horas ou de um dia.</p>
 
-      <div class="warning"><strong>Valor da ação até <span class="prazo-oferta">15/10</span>.</strong> Quem já conversou com a W7M mantém Mechas + Finalização por R$ 750 até essa data. Depois, o valor volta para R$ 1.200. Não ofereça R$ 750 depois do prazo sem falar com a equipe.</div>
+      <div class="warning"><strong>O motivo para voltar são as <span class="vagas-total">30</span> vagas.</strong> A ação fecha quando elas acabarem. Contador em 0? Pare o follow-up e use a mensagem de ação encerrada (Primeiro contato, 4).</div>
 
       <div class="flow" style="margin-top: .75rem;">
-        <div class="flow-step"><span>1</span><p><strong>Leia a conversa.</strong> Veja em que ponto ela parou e o que a pessoa já contou.</p></div>
-        <div class="flow-step"><span>2</span><p><strong>Marque a etiqueta.</strong> Use a lista abaixo para saber a situação.</p></div>
-        <div class="flow-step"><span>3</span><p><strong>Envie a mensagem da vez.</strong> Anote a data para saber quando mandar a próxima.</p></div>
-        <div class="flow-step"><span>4</span><p><strong>Respondeu?</strong> Saia do follow-up e siga pela fase certa: agenda, objeções ou confirmação.</p></div>
-        <div class="flow-step"><span>5</span><p><strong>Pare na hora certa.</strong> Se a pessoa pedir para parar ou não responder a mensagem final, marque Encerrado e não chame de novo.</p></div>
+        <div class="flow-step"><span>1</span><p><strong>Leia a conversa.</strong> Veja em que ponto parou e o que ela já contou.</p></div>
+        <div class="flow-step"><span>2</span><p><strong>Marque a etiqueta</strong> e mande a mensagem da vez. Anote quando mandou.</p></div>
+        <div class="flow-step"><span>3</span><p><strong>Respondeu?</strong> Saia do follow-up e siga pela etapa em que ela parou, ou pelas Objeções.</p></div>
+        <div class="flow-step"><span>4</span><p><strong>Pare na hora certa.</strong> Pediu para parar, disse que não quer ou não respondeu a mensagem final: marque Encerrado e não chame de novo.</p></div>
       </div>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="true" aria-controls="panel-follow-0">
-          <span class="script-index">✓</span><strong>Etiquetas para controlar os leads</strong><span class="toggle-hint">Fechar <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index">✓</span><strong>Etiquetas para controlar as conversas</strong><span class="toggle-hint">Fechar <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-follow-0">
-          <p class="section-intro" style="margin-top: .2rem;">Na caixa de entrada do Gerenciador (Meta Business Suite), coloque uma etiqueta em cada conversa. Se preferir, anote numa lista simples com o nome e a etiqueta. Troque a etiqueta sempre que a situação mudar.</p>
+          <p class="section-intro" style="margin-top: .2rem;">No direct (ou na caixa de entrada do Meta Business Suite), coloque uma etiqueta em cada conversa. Se preferir, anote numa lista simples com o @ e a situação. Troque a etiqueta sempre que a situação mudar.</p>
           <div class="facts">
-            <div class="fact"><strong>Não respondeu</strong><span>Recebeu a primeira mensagem e nunca respondeu. Situação 1.</span></div>
+            <div class="fact"><strong>Realinhamento</strong><span>Toda conversa que veio do anúncio. Use junto com as outras.</span></div>
+            <div class="fact"><strong>Não respondeu</strong><span>Recebeu a primeira resposta e nunca respondeu. Situação 1.</span></div>
             <div class="fact"><strong>Sumiu</strong><span>Respondeu, mostrou interesse e parou de falar. Situação 2.</span></div>
-            <div class="fact"><strong>Vai agendar</strong><span>Disse que ia marcar e não marcou. Situação 3.</span></div>
-            <div class="fact"><strong>Travou</strong><span>Parou em preço, horário ou alguma dúvida. Situação 4.</span></div>
-            <div class="fact"><strong>Não veio</strong><span>Faltou ou desmarcou sem remarcar. Situação 5.</span></div>
-            <div class="fact"><strong>Atendida</strong><span>Já fez as mechas. Situação 6, pós-atendimento.</span></div>
-            <div class="fact"><strong>Agendada</strong><span>Tem dia e horário. Sem follow-up, só o lembrete da fase 06.</span></div>
+            <div class="fact"><strong>Vai agendar</strong><span>Disse que ia ver o dia e não voltou. Situação 3.</span></div>
+            <div class="fact"><strong>Travou</strong><span>Parou no preço, no horário ou numa dúvida. Situação 4.</span></div>
+            <div class="fact"><strong>Quase fechou</strong><span>Escolheu ou pediu horário e não confirmou. Situação 5.</span></div>
+            <div class="fact"><strong>Não veio</strong><span>Faltou ou desmarcou sem remarcar. Situação 6.</span></div>
+            <div class="fact"><strong>Atendida</strong><span>Já fez o realinhamento. Situação 7.</span></div>
+            <div class="fact"><strong>Agendada</strong><span>Tem dia e horário. Sem follow-up, só o lembrete da véspera.</span></div>
+            <div class="fact"><strong>Megahair</strong><span>Fora da ação. Sem follow-up da oferta, só o retorno da equipe.</span></div>
             <div class="fact"><strong>Encerrado</strong><span>Pediu para parar ou não respondeu a mensagem final. Não chame de novo.</span></div>
           </div>
         </div>
@@ -746,21 +1011,17 @@ Se precisar falar com a gente, pode responder por aqui.</p>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-follow-1">
-          <span class="script-index">1</span><strong>Não respondeu a primeira mensagem</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index">1</span><strong>Não respondeu a primeira resposta</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-follow-1" hidden>
-          <p class="script-label">1ª mensagem · hoje</p>
-          <p class="script-text" id="script-follow-1a">Oi, [nome]. Aqui é a Taís, da W7M Barra da Tijuca. Você chamou a gente sobre Mechas + Finalização e acho que minha resposta se perdeu por aqui. Ainda quer saber como funciona?</p>
+          <p class="script-label">1ª mensagem · 3 a 4 horas depois</p>
+          <p class="script-text" id="script-follow-1a">Oi, tudo bem? Ainda quer fazer o realinhamento por <span class="preco-acao">R$ 390</span>? Me responde aqui que eu já vejo um horário para você.</p>
           <button class="copy-button" type="button" data-copy="script-follow-1a">Copiar mensagem</button>
 
-          <p class="script-label">2ª mensagem · 3 dias depois, sem resposta</p>
-          <p class="script-text" id="script-follow-1b">[nome], para você ter a informação completa: Mechas + Finalização sai por R$ 750 na W7M Barra da Tijuca. O valor normal é R$ 1.200. Se quiser, me conta como está seu cabelo hoje e eu passo para a equipe.</p>
+          <p class="script-label">Mensagem final · no dia seguinte, sem resposta</p>
+          <p class="script-text" id="script-follow-1b">Oi! Último recado sobre o realinhamento: de <span class="preco-normal">R$ 650</span> por <span class="preco-acao">R$ 390</span>, só enquanto durarem as <span class="vagas-total">30</span> vagas. Se quiser uma, me chama aqui. Se não for a hora, tudo bem, não te chamo mais sobre isso.</p>
           <button class="copy-button" type="button" data-copy="script-follow-1b">Copiar mensagem</button>
-
-          <p class="script-label">Mensagem final · 4 dias depois da 2ª</p>
-          <p class="script-text" id="script-follow-1c">Oi, [nome]. Os anúncios das mechas já terminaram, mas quem chegou a falar com a gente mantém o valor de R$ 750 até <span class="prazo-oferta">15/10</span>. Depois disso, volta para R$ 1.200. Se não for o momento, tudo bem, não vou mais te chamar sobre isso. Quando quiser, é só responder aqui.</p>
-          <button class="copy-button" type="button" data-copy="script-follow-1c">Copiar mensagem</button>
-          <div class="note"><strong>Quando parar:</strong> sem resposta depois da mensagem final, marque Encerrado.</div>
+          <div class="note"><strong>Só duas mensagens.</strong> Sem resposta depois da final, marque Encerrado.</div>
         </div>
       </article>
 
@@ -769,18 +1030,14 @@ Se precisar falar com a gente, pode responder por aqui.</p>
           <span class="script-index">2</span><strong>Mostrou interesse e sumiu</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-follow-2" hidden>
-          <p class="script-label">1ª mensagem · 2 dias depois da última resposta</p>
-          <p class="script-text" id="script-follow-2a">Oi, [nome]. Voltei porque nossa conversa sobre Mechas + Finalização ficou em aberto. Ficou alguma dúvida que eu possa esclarecer?</p>
+          <p class="script-label">1ª mensagem · no dia seguinte</p>
+          <p class="script-text" id="script-follow-2a">Oi, tudo bem? Nossa conversa sobre o realinhamento ficou pela metade. Ficou alguma dúvida? Se quiser, já te passo dois horários.</p>
           <button class="copy-button" type="button" data-copy="script-follow-2a">Copiar mensagem</button>
-          <div class="note"><strong>Personalize:</strong> se ela contou algo sobre o cabelo ou mandou foto, cite esse detalhe antes da pergunta.</div>
+          <div class="note"><strong>Personalize:</strong> se ela contou algo do cabelo, cite antes da pergunta.</div>
 
-          <p class="script-label">2ª mensagem · 3 dias depois, sem resposta</p>
-          <p class="script-text" id="script-follow-2b">[nome], se você ainda tiver interesse na oferta de Mechas + Finalização por R$ 750, posso consultar a agenda da W7M Barra da Tijuca. Quer que eu verifique?</p>
+          <p class="script-label">Mensagem final · 1 dia depois, sem resposta</p>
+          <p class="script-text" id="script-follow-2b">Oi! Passando uma última vez, para não ficar insistindo: o realinhamento por <span class="preco-acao">R$ 390</span> vale enquanto tiver vaga, e são só <span class="vagas-total">30</span>. Se quiser marcar, é só me chamar aqui.</p>
           <button class="copy-button" type="button" data-copy="script-follow-2b">Copiar mensagem</button>
-
-          <p class="script-label">Mensagem final · 4 dias depois da 2ª</p>
-          <p class="script-text" id="script-follow-2c">Oi, [nome]. Este é meu último retorno sobre as mechas, para não insistir. O valor de R$ 750 fica valendo para você até <span class="prazo-oferta">15/10</span>. Depois, volta para R$ 1.200. Se quiser retomar, é só me chamar por aqui.</p>
-          <button class="copy-button" type="button" data-copy="script-follow-2c">Copiar mensagem</button>
         </div>
       </article>
 
@@ -789,208 +1046,235 @@ Se precisar falar com a gente, pode responder por aqui.</p>
           <span class="script-index">3</span><strong>Disse que ia agendar e não agendou</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-follow-3" hidden>
-          <p class="script-label">1ª mensagem · 1 a 2 dias depois</p>
-          <p class="script-text" id="script-follow-3a">Oi, [nome]. Você comentou que ia ver o melhor dia para fazer as mechas. Quer que eu consulte a agenda da equipe? Se me disser o dia ou o período que fica melhor, já verifico.</p>
+          <p class="script-label">1ª mensagem · no dia seguinte</p>
+          <p class="script-text" id="script-follow-3a">Oi, tudo bem? Você comentou que ia ver o melhor dia para o realinhamento. Me fala o dia da semana e se prefere manhã ou tarde, que eu vejo os horários com a equipe.</p>
           <button class="copy-button" type="button" data-copy="script-follow-3a">Copiar mensagem</button>
 
-          <p class="script-label">2ª mensagem · 3 dias depois, sem resposta</p>
-          <p class="script-text" id="script-follow-3b">[nome], consultei a equipe e tenho [dia] às [horário] ou [dia] às [horário] na W7M Barra da Tijuca. Algum desses funciona para você?</p>
+          <p class="script-label">2ª mensagem · 1 dia depois, sem resposta</p>
+          <p class="script-text" id="script-follow-3b">Consegui dois horários aqui na W7M: [dia] às [horário] ou [dia] às [horário]. Quer que eu reserve um deles?</p>
           <button class="copy-button" type="button" data-copy="script-follow-3b">Copiar mensagem</button>
-          <div class="warning"><strong>Só envie com horários confirmados pela equipe.</strong> Se ainda não consultou, use a 1ª mensagem de novo no lugar desta.</div>
+          <div class="warning"><strong>Só envie com horários confirmados pela equipe.</strong></div>
 
-          <p class="script-label">Mensagem final · 4 dias depois da 2ª</p>
-          <p class="script-text" id="script-follow-3c">Oi, [nome]. Passando uma última vez: o valor de R$ 750 para Mechas + Finalização vale até <span class="prazo-oferta">15/10</span>. Se quiser marcar antes disso, me avisa e eu vejo os horários. Se mudou de ideia, sem problema nenhum.</p>
+          <p class="script-label">Mensagem final · 1 dia depois, sem resposta</p>
+          <p class="script-text" id="script-follow-3c">Oi! Último recado: o realinhamento por <span class="preco-acao">R$ 390</span> fecha quando as <span class="vagas-total">30</span> vagas forem preenchidas. Se quiser marcar, me avisa. Se mudou de ideia, sem problema!</p>
           <button class="copy-button" type="button" data-copy="script-follow-3c">Copiar mensagem</button>
         </div>
       </article>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-follow-4">
-          <span class="script-index">4</span><strong>Travou em preço, horário ou dúvida</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index">4</span><strong>Travou no preço, no horário ou numa dúvida</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-follow-4" hidden>
-          <p class="script-label">1ª mensagem · travou no preço</p>
-          <p class="script-text" id="script-follow-4a">Oi, [nome]. Voltei por causa da sua dúvida sobre o valor. Mechas + Finalização sai por R$ 750, e o valor normal é R$ 1.200. Se ajudar, confirmo com a unidade as formas de pagamento e te passo por aqui.</p>
+          <p class="script-label">Travou no preço · uma mensagem só</p>
+          <p class="script-text" id="script-follow-4a">Oi, tudo bem? Só para te avisar: o realinhamento continua por <span class="preco-acao">R$ 390</span> enquanto tiver vaga. O valor normal é <span class="preco-normal">R$ 650</span>. Se fizer sentido para você, me chama aqui.</p>
           <button class="copy-button" type="button" data-copy="script-follow-4a">Copiar mensagem</button>
+          <div class="note"><strong>Preço:</strong> mande só esta. Sem resposta, marque Encerrado.</div>
 
           <p class="script-label">1ª mensagem · travou no horário</p>
-          <p class="script-text" id="script-follow-4b">Oi, [nome]. Fiquei de ver outra possibilidade de horário para você. A equipe confirmou [dia] às [horário]. Funciona para você?</p>
+          <p class="script-text" id="script-follow-4b">Oi, tudo bem? Abriu horário aqui na W7M: [dia] às [horário] ou [dia] às [horário]. Algum desses funciona para você?</p>
           <button class="copy-button" type="button" data-copy="script-follow-4b">Copiar mensagem</button>
 
           <p class="script-label">1ª mensagem · ficou uma dúvida</p>
-          <p class="script-text" id="script-follow-4c">Oi, [nome]. Voltei com a resposta sobre [dúvida da cliente]: [resposta confirmada pela equipe]. Se fizer sentido para você, já consulto a agenda.</p>
+          <p class="script-text" id="script-follow-4c">Oi, tudo bem? Voltei com a resposta da equipe sobre o que você perguntou: [resposta da equipe]. Quer que eu já veja um horário para você?</p>
           <button class="copy-button" type="button" data-copy="script-follow-4c">Copiar mensagem</button>
-          <div class="note"><strong>Escolha uma das três primeiras</strong> conforme o motivo. Horário e resposta só depois de confirmar com a equipe. Não empilhe argumentos.</div>
+          <div class="note"><strong>Horário e resposta só depois de confirmar com a equipe.</strong></div>
 
-          <p class="script-label">2ª mensagem · 3 dias depois, sem resposta</p>
-          <p class="script-text" id="script-follow-4d">[nome], conseguiu pensar? Se ainda tiver alguma dúvida, me fala qual é e eu vejo com a equipe.</p>
+          <p class="script-label">Mensagem final · 1 dia depois, sem resposta</p>
+          <p class="script-text" id="script-follow-4d">Oi! Último recado sobre o realinhamento: de <span class="preco-normal">R$ 650</span> por <span class="preco-acao">R$ 390</span>, até fecharem as <span class="vagas-total">30</span> vagas. Não vou mais te chamar sobre isso, mas se decidir, é só mandar mensagem aqui.</p>
           <button class="copy-button" type="button" data-copy="script-follow-4d">Copiar mensagem</button>
-
-          <p class="script-label">Mensagem final · 4 dias depois da 2ª</p>
-          <p class="script-text" id="script-follow-4e">Oi, [nome]. Para você se organizar: o valor de R$ 750 vale até <span class="prazo-oferta">15/10</span>. Depois, volta para R$ 1.200. Não vou mais insistir. Se decidir fazer, me chama aqui e eu vejo a agenda.</p>
-          <button class="copy-button" type="button" data-copy="script-follow-4e">Copiar mensagem</button>
         </div>
       </article>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-follow-5">
-          <span class="script-index">5</span><strong>Não veio ou desmarcou sem remarcar</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index">5</span><strong>Quase fechou e parou</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-follow-5" hidden>
-          <p class="script-label">1ª mensagem · faltou (no mesmo dia ou no dia seguinte)</p>
-          <p class="script-text" id="script-follow-5a">Oi, [nome]. Vi que não deu para você vir hoje. Está tudo bem? Se quiser, consulto outro horário para você fazer as mechas.</p>
+          <p class="script-label">1ª mensagem · 2 a 3 horas depois</p>
+          <p class="script-text" id="script-follow-5a">Oi, tudo bem? Ficou faltando só confirmar o seu horário: [dia] às [horário]. Posso deixar reservado para você?</p>
           <button class="copy-button" type="button" data-copy="script-follow-5a">Copiar mensagem</button>
 
-          <p class="script-label">1ª mensagem · desmarcou e não remarcou</p>
-          <p class="script-text" id="script-follow-5b">Oi, [nome]. Você desmarcou o horário das mechas e ficamos sem nova data. Quer que eu veja outro dia? Me fala o período que fica melhor.</p>
+          <p class="script-label">Mensagem final · no dia seguinte, sem resposta</p>
+          <p class="script-text" id="script-follow-5b">Oi! Ainda quer fazer o realinhamento? Se aquele horário não der mais, me fala o melhor dia que eu vejo outro com a equipe. As vagas por <span class="preco-acao">R$ 390</span> são só <span class="vagas-total">30</span>.</p>
           <button class="copy-button" type="button" data-copy="script-follow-5b">Copiar mensagem</button>
-
-          <p class="script-label">Mensagem final · 3 dias depois, sem resposta</p>
-          <p class="script-text" id="script-follow-5c">[nome], o valor de R$ 750 para Mechas + Finalização continua valendo para você até <span class="prazo-oferta">15/10</span>. Se quiser remarcar até lá, me diga o dia ou o período e eu vejo com a equipe. Se não der agora, tudo bem.</p>
-          <button class="copy-button" type="button" data-copy="script-follow-5c">Copiar mensagem</button>
-          <div class="note"><strong>Sem cobrança:</strong> não comente a falta nem fale em sinal. Aqui são só duas mensagens. Sem resposta, marque Encerrado.</div>
+          <div class="note"><strong>Não marque no contador</strong> enquanto ela não confirmar.</div>
         </div>
       </article>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-follow-6">
-          <span class="script-index">6</span><strong>Já foi atendida</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index">6</span><strong>Não veio ou desmarcou sem remarcar</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-follow-6" hidden>
+          <p class="script-label">1ª mensagem · faltou (no mesmo dia)</p>
+          <p class="script-text" id="script-follow-6a">Oi, tudo bem? Vi que não deu para você vir hoje. Está tudo bem? Se quiser, vejo outro dia para você.</p>
+          <button class="copy-button" type="button" data-copy="script-follow-6a">Copiar mensagem</button>
+
+          <p class="script-label">1ª mensagem · desmarcou e não remarcou</p>
+          <p class="script-text" id="script-follow-6b">Oi, tudo bem? Você desmarcou o realinhamento e ficou sem nova data. Quer que eu veja outro dia? Me fala se prefere manhã ou tarde.</p>
+          <button class="copy-button" type="button" data-copy="script-follow-6b">Copiar mensagem</button>
+
+          <p class="script-label">Mensagem final · no dia seguinte, sem resposta</p>
+          <p class="script-text" id="script-follow-6c">Oi! Se quiser remarcar enquanto ainda tiver vaga, o realinhamento por <span class="preco-acao">R$ 390</span> continua valendo. Me fala o dia que eu vejo com a equipe. Se não der agora, tudo bem!</p>
+          <button class="copy-button" type="button" data-copy="script-follow-6c">Copiar mensagem</button>
+          <div class="note"><strong>Sem cobrança:</strong> não comente a falta e não fale em sinal. Sem resposta, marque Encerrado e desmarque a vaga no contador.</div>
+        </div>
+      </article>
+
+      <article class="script-card">
+        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-follow-7">
+          <span class="script-index">7</span><strong>Já foi atendida</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+        </button>
+        <div class="script-content" id="panel-follow-7" hidden>
           <div class="facts">
-            <div class="fact"><strong>24 a 48 horas depois</strong><span>Pergunte como ela está com o resultado (Pós-atendimento, script 1).</span></div>
-            <div class="fact"><strong>Resposta positiva</strong><span>Peça a avaliação (script 3) e, se a conversa seguir leve, fale de indicação (script 4).</span></div>
-            <div class="fact"><strong>Reclamação</strong><span>Use o script 2 e leve para a equipe antes de prometer qualquer coisa.</span></div>
-            <div class="fact"><strong>Manutenção</strong><span>No prazo que a equipe indicar, use o script 5.</span></div>
+            <div class="fact"><strong>24 a 48 horas depois</strong><span>Pergunte como ficou (Pós-atendimento, mensagem 1).</span></div>
+            <div class="fact"><strong>Gostou</strong><span>Peça a avaliação no Google (mensagem 2) e, se a conversa seguir leve, fale de indicação (mensagem 3).</span></div>
+            <div class="fact"><strong>Não gostou</strong><span>Use a mensagem 4 e leve para a equipe antes de prometer qualquer coisa.</span></div>
           </div>
           <button class="phase-link" type="button" data-phase="pos">Abrir Pós-atendimento</button>
         </div>
       </article>
     </section>
 
-    <section class="phase-view" id="phase-pos" data-title="Pós-atendimento" hidden>
-      <div class="back-bar"><button class="back-button" type="button">Voltar</button><span class="phase-title">Pós-atendimento</span></div>
-      <p class="section-intro">Comece pela satisfação, de 24 a 48 horas depois do atendimento. Avaliação e indicação só entram quando a resposta for positiva.</p>
-
-      <article class="script-card">
-        <button class="script-toggle" type="button" aria-expanded="true" aria-controls="panel-pos-1">
-          <span class="script-index">1</span><strong>Perguntar sobre a satisfação</strong><span class="toggle-hint">Fechar <span class="toggle-arrow">⌄</span></span>
-        </button>
-        <div class="script-content" id="panel-pos-1">
-          <p class="script-text" id="script-pos-1">Oi, [nome]. Como você está se sentindo com o resultado das mechas e da finalização? Quero saber como foi sua experiência com a equipe.</p>
-          <button class="copy-button" type="button" data-copy="script-pos-1">Copiar mensagem</button>
-        </div>
-      </article>
-
-      <article class="script-card">
-        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-pos-2">
-          <span class="script-index">2</span><strong>Quando houver reclamação</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
-        </button>
-        <div class="script-content" id="panel-pos-2" hidden>
-          <p class="script-text" id="script-pos-2">Sinto muito que sua experiência não tenha saído como você esperava, [nome]. Pode me contar o que aconteceu e, se ajudar, enviar uma foto? Vou registrar tudo e levar para a equipe avaliar antes de te orientar sobre o próximo passo.</p>
-          <button class="copy-button" type="button" data-copy="script-pos-2">Copiar mensagem</button>
-          <div class="warning"><strong>Não prometa retoque, reembolso ou solução técnica.</strong> A equipe responsável precisa avaliar primeiro.</div>
-        </div>
-      </article>
-
-      <article class="script-card">
-        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-pos-3">
-          <span class="script-index">3</span><strong>Pedir avaliação após retorno positivo</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
-        </button>
-        <div class="script-content" id="panel-pos-3" hidden>
-          <p class="script-text" id="script-pos-3">Que bom saber, [nome]. Se você se sentir à vontade, pode deixar uma avaliação sobre sua experiência neste link: [link confirmado]. Seu relato ajuda outras pessoas a conhecerem o trabalho da equipe W7M.</p>
-          <button class="copy-button" type="button" data-copy="script-pos-3">Copiar mensagem</button>
-        </div>
-      </article>
-
-      <article class="script-card">
-        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-pos-4">
-          <span class="script-index">4</span><strong>Indicação sem pressão</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
-        </button>
-        <div class="script-content" id="panel-pos-4" hidden>
-          <p class="script-text" id="script-pos-4">[nome], se alguma amiga comentar que está pensando em fazer mechas, você pode enviar o Instagram da W7M Barra da Tijuca. A equipe conversa com ela sem compromisso.</p>
-          <button class="copy-button" type="button" data-copy="script-pos-4">Copiar mensagem</button>
-        </div>
-      </article>
-
-      <article class="script-card">
-        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-pos-5">
-          <span class="script-index">5</span><strong>Retorno para manutenção</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
-        </button>
-        <div class="script-content" id="panel-pos-5" hidden>
-          <p class="script-text" id="script-pos-5">Oi, [nome]. Já faz [tempo desde o atendimento] que você fez as mechas aqui na W7M Barra da Tijuca. Quer que eu veja com a equipe um horário para a manutenção?</p>
-          <button class="copy-button" type="button" data-copy="script-pos-5">Copiar mensagem</button>
-          <div class="warning"><strong>Intervalo e valor da manutenção vêm da equipe.</strong> O valor de R$ 750 é da oferta de Mechas + Finalização. Não use para manutenção sem confirmar.</div>
-        </div>
-      </article>
-    </section>
-
+    <!-- 09 UTILIDADES -->
     <section class="phase-view" id="phase-utilidades" data-title="Utilidades" hidden>
       <div class="back-bar"><button class="back-button" type="button">Voltar</button><span class="phase-title">Utilidades</span></div>
-      <p class="section-intro">Consulta rápida para responder sem assumir dados que ainda não foram validados.</p>
+      <p class="section-intro">Textos de apoio e consulta rápida para não responder no chute.</p>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="true" aria-controls="panel-util-1">
           <span class="script-index">1</span><strong>Mensagem de ausência</strong><span class="toggle-hint">Fechar <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-util-1">
-          <p class="script-text" id="script-util-1">Oi, [nome]. Recebi sua mensagem sobre Mechas + Finalização. Estou fora do atendimento agora. Assim que eu retornar, sigo a conversa com você por aqui.</p>
+          <p class="script-text" id="script-util-1">Oi, tudo bem? Recebemos sua mensagem sobre o realinhamento e já te respondemos por aqui.</p>
           <button class="copy-button" type="button" data-copy="script-util-1">Copiar mensagem</button>
         </div>
       </article>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-util-2">
-          <span class="script-index">2</span><strong>Dados confirmados</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index">2</span><strong>Endereço completo</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-util-2" hidden>
-          <div class="facts">
-            <div class="fact"><strong>Serviço</strong><span>Mechas + Finalização</span></div>
-            <div class="fact"><strong>Oferta</strong><span>De R$ 1.200 por R$ 750</span></div>
-            <div class="fact"><strong>Unidade</strong><span>W7M Barra da Tijuca</span></div>
-            <div class="fact"><strong>Canal</strong><span>Instagram da W7M</span></div>
-            <div class="fact"><strong>Atendimento</strong><span>Humano, feito pela Taís ou equipe W7M</span></div>
-          </div>
+          <p class="script-text" id="script-util-2">W7M New Concept
+Barra Business Center
+Av. das Américas, 3301, bloco 2, loja 106
+Barra da Tijuca, Rio de Janeiro (próximo ao Village Mall)</p>
+          <button class="copy-button" type="button" data-copy="script-util-2">Copiar mensagem</button>
         </div>
       </article>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-util-3">
-          <span class="script-index">3</span><strong>Perguntas que exigem checagem</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index">3</span><strong>Resumo da ação (cola interna)</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-util-3" hidden>
-          <div class="facts">
-            <div class="fact"><strong>Agenda</strong><span>Confirmar dias e horários antes de oferecer.</span></div>
-            <div class="fact"><strong>Duração</strong><span>Consultar conforme o caso e a avaliação.</span></div>
-            <div class="fact"><strong>Pagamento</strong><span>Validar formas e condições com a unidade.</span></div>
-            <div class="fact"><strong>Megahair</strong><span>Checar técnica usada e compatibilidade.</span></div>
-            <div class="fact"><strong>Profissional</strong><span>Confirmar disponibilidade sem prometer um nome.</span></div>
-            <div class="fact"><strong>Endereço e orientações</strong><span>Enviar somente dados confirmados pela equipe.</span></div>
-          </div>
+          <p class="script-text" id="script-util-3">Realinhamento capilar · W7M New Concept, Barra
+De <span class="preco-normal">R$ 650</span> por <span class="preco-acao">R$ 390</span>
+Apenas <span class="vagas-total">30</span> vagas, fecha no <span class="vagas-total">30</span>º agendamento. Começa em 11/11 (quarta)
+Não inclui cabelo com megahair (não está no anúncio, explicar na conversa)
+Atendimento pela equipe W7M no direct do Instagram, sem resposta automática
+Pagamento: formas confirmadas com a unidade, sem sinal
+Progressiva, formol, composição e duração: a equipe confirma
+Um dos anúncios saiu com R$ 399 por erro: vale <span class="preco-acao">R$ 390</span></p>
+          <button class="copy-button" type="button" data-copy="script-util-3">Copiar resumo</button>
         </div>
       </article>
 
       <article class="script-card">
         <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-util-4">
-          <span class="script-index">4</span><strong>Regras de ouro</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+          <span class="script-index">4</span><strong>Perguntas que pedem checagem com a equipe</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
         </button>
         <div class="script-content" id="panel-util-4" hidden>
           <div class="facts">
-            <div class="fact"><strong>Personalize</strong><span>Troque os campos entre colchetes e use o que a pessoa já contou.</span></div>
-            <div class="fact"><strong>Pergunte aos poucos</strong><span>Uma ou duas perguntas por mensagem são suficientes.</span></div>
-            <div class="fact"><strong>Não prometa resultado</strong><span>A avaliação técnica vem antes de qualquer garantia.</span></div>
-            <div class="fact"><strong>Confirme antes de responder</strong><span>Se o dado não estiver neste guia, consulte a equipe.</span></div>
-            <div class="fact"><strong>Sem urgência inventada</strong><span>Fora o prazo da fase 08, não mencione prazo ou disponibilidade sem validação.</span></div>
-            <div class="fact"><strong>Mantenha o contexto</strong><span>Registre preferência, histórico e dúvidas para não repetir perguntas.</span></div>
+            <div class="fact"><strong>Agenda</strong><span>Dias e horários, antes de oferecer.</span></div>
+            <div class="fact"><strong>Técnica e produtos</strong><span>Se é progressiva, se tem formol, o que é usado.</span></div>
+            <div class="fact"><strong>Duração</strong><span>A equipe orienta no salão, depois de ver o cabelo.</span></div>
+            <div class="fact"><strong>Pagamento</strong><span>Formas e condições, com a unidade.</span></div>
+            <div class="fact"><strong>Megahair</strong><span>Outra opção para quem tem, ou fazer depois de tirar.</span></div>
+            <div class="fact"><strong>Profissional</strong><span>Pedido de atendimento com o Márcio.</span></div>
           </div>
         </div>
       </article>
     </section>
+
+    <!-- 10 CONTADOR DE VAGAS -->
+    <section class="phase-view" id="phase-vagas" data-title="Contador de vagas" hidden>
+      <div class="back-bar"><button class="back-button" type="button">Voltar</button><span class="phase-title">Contador de vagas</span></div>
+      <p class="section-intro">Marque uma vaga a cada agendamento confirmado, depois de mandar a mensagem de confirmação. Fica salvo neste aparelho, neste navegador. Desmarcou e não remarcou? Tire a marcação e a vaga volta.</p>
+
+      <div class="vagas-resumo">
+        <div class="num vagas-status-curto">Restam 30 vagas</div>
+        <div class="sub"><span class="vagas-agendadas">0</span> de <span class="vagas-total">30</span> agendadas</div>
+      </div>
+
+      <div class="warning vagas-alerta" id="alertaAviso"><strong>Chegou em <span class="vagas-aviso">25</span>:</strong> avise Christopher e Bianca agora. A mensagem está logo abaixo.</div>
+      <div class="alerta vagas-alerta" id="alertaFechou"><strong>As <span class="vagas-total">30</span> vagas fecharam.</strong> Peça para Christopher e Bianca pausarem os anúncios. Para quem chegar agora, use a mensagem de ação encerrada (Primeiro contato, 4).</div>
+
+      <div class="vagas-lista" id="vagasLista"></div>
+
+      <article class="script-card">
+        <button class="script-toggle" type="button" aria-expanded="true" aria-controls="panel-vagas-1">
+          <span class="script-index">1</span><strong>Avisar Christopher e Bianca</strong><span class="toggle-hint">Fechar <span class="toggle-arrow">⌄</span></span>
+        </button>
+        <div class="script-content" id="panel-vagas-1">
+          <p class="script-label">Em <span class="vagas-aviso">25</span> agendamentos</p>
+          <p class="script-text" id="script-vagas-1">Christopher e Bianca, aqui é a <span class="nome-atendente">Thaís</span>, da W7M. Chegamos a <span class="vagas-aviso">25</span> agendamentos no realinhamento. Faltam <span class="vagas-faltam-aviso">5</span> vagas para fechar as <span class="vagas-total">30</span>.</p>
+          <button class="copy-button" type="button" data-copy="script-vagas-1">Copiar mensagem</button>
+
+          <p class="script-label">Em <span class="vagas-total">30</span> agendamentos</p>
+          <p class="script-text" id="script-vagas-2">Christopher e Bianca, aqui é a <span class="nome-atendente">Thaís</span>, da W7M. Fechamos as <span class="vagas-total">30</span> vagas do realinhamento. Podem pausar os anúncios. Quem chegar agora eu atendo pelo valor normal ou coloco na lista de espera.</p>
+          <button class="copy-button" type="button" data-copy="script-vagas-2">Copiar mensagem</button>
+        </div>
+      </article>
+
+      <article class="script-card">
+        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-vagas-2">
+          <span class="script-index">2</span><strong>Contar quantas vagas restam</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+        </button>
+        <div class="script-content" id="panel-vagas-2" hidden>
+          <p class="script-text" id="script-vagas-3">Oi, tudo bem? Atualizando: <span class="vagas-frase">restam 30 vagas</span> no realinhamento por <span class="preco-acao">R$ 390</span>. Se quiser uma, me fala o melhor dia que eu vejo os horários.</p>
+          <button class="copy-button" type="button" data-copy="script-vagas-3">Copiar mensagem</button>
+          <div class="note"><strong>O número vem do contador.</strong> Marque os últimos agendamentos antes de mandar. Nunca arredonde para baixo para apressar a pessoa. Contador em 0? Use a mensagem de ação encerrada.</div>
+        </div>
+      </article>
+
+      <article class="script-card">
+        <button class="script-toggle" type="button" aria-expanded="false" aria-controls="panel-vagas-3">
+          <span class="script-index">3</span><strong>Lista de espera</strong><span class="toggle-hint">Abrir <span class="toggle-arrow">⌄</span></span>
+        </button>
+        <div class="script-content" id="panel-vagas-3" hidden>
+          <div class="vaga-item"><span class="vaga-num">✎</span><input type="text" id="listaEspera" placeholder="@ ou nomes da lista de espera, na ordem" aria-label="Lista de espera"></div>
+          <div class="note"><strong>Abriu uma vaga?</strong> Chame a primeira pessoa da lista com a mensagem de Valor + horários.</div>
+        </div>
+      </article>
+    </section>
+
+    <!-- 11 REGRAS DE OURO -->
+    <section class="phase-view" id="phase-regras" data-title="Regras de ouro" hidden>
+      <div class="back-bar"><button class="back-button" type="button">Voltar</button><span class="phase-title">Regras de ouro</span></div>
+      <p class="section-intro">Leia antes do primeiro atendimento. Valem para toda conversa desta ação.</p>
+      <div class="flow">
+        <div class="flow-step"><span>1</span><p><strong>Responda rápido.</strong> Em até 5 minutos, quando der. Quem chama pelo anúncio esfria em poucas horas.</p></div>
+        <div class="flow-step"><span>2</span><p><strong>O preço ela já viu.</strong> Confirme <span class="preco-acao">R$ 390</span> logo na primeira mensagem, sem suspense.</p></div>
+        <div class="flow-step"><span>3</span><p><strong>Megahair antes dos horários.</strong> Não está no anúncio. Pergunte cedo e responda com gentileza. Megahair não ocupa vaga.</p></div>
+        <div class="flow-step"><span>4</span><p><strong>Sem diagnóstico e sem promessa.</strong> A equipe avalia o cabelo no salão. Não prometa resultado nem quanto tempo dura.</p></div>
+        <div class="flow-step"><span>5</span><p><strong>Progressiva, formol, produtos:</strong> diga que vai confirmar com a equipe e volte com a resposta. Nunca responda no chute.</p></div>
+        <div class="flow-step"><span>6</span><p><strong>Valor com dois horários confirmados.</strong> Não prometa data que a equipe não confirmou.</p></div>
+        <div class="flow-step"><span>7</span><p><strong>A urgência são as <span class="vagas-total">30</span> vagas.</strong> Quantas restam, só pelo contador. Não use “novembro e dezembro lotam”: a pessoa responde com um mês.</p></div>
+        <div class="flow-step"><span>8</span><p><strong>Escreva as opções no texto.</strong> Botões de resposta rápida somem quando a pessoa começa a digitar.</p></div>
+        <div class="flow-step"><span>9</span><p><strong>Os textos não usam o nome da pessoa.</strong> Começam com “Oi, tudo bem?”. Se souber o nome, pode acrescentar.</p></div>
+        <div class="flow-step"><span>10</span><p><strong>Pagamento com a unidade.</strong> Sem política de sinal, sem Pix antecipado.</p></div>
+        <div class="flow-step"><span>11</span><p><strong>Follow-up curto.</strong> Duas ou três mensagens por situação, no máximo. Depois, Encerrado.</p></div>
+        <div class="flow-step"><span>12</span><p><strong>Marque cada agendamento no contador.</strong> Em <span class="vagas-aviso">25</span>, avise Christopher e Bianca. Em <span class="vagas-total">30</span>, peça para pausar os anúncios.</p></div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
-    <strong>W7M BARRA DA TIJUCA</strong>
-    Guia interno para atendimento humano no Instagram
+    <strong>W7M NEW CONCEPT · BARRA</strong>
+    Guia interno para o atendimento do realinhamento no direct do Instagram
   </footer>
 
   <div class="toast" id="copyToast" role="status" aria-live="polite" hidden>Mensagem copiada.</div>
@@ -999,46 +1283,144 @@ Se precisar falar com a gente, pode responder por aqui.</p>
     (function () {
       'use strict';
 
+      /* ===== VALORES DA AÇÃO: troque só aqui e o guia inteiro atualiza =====
+         PRECO_ACAO: valor do realinhamento nas vagas da ação.
+         PRECO_NORMAL: valor fora da ação (o "de" do anúncio).
+         VAGAS_TOTAL: limite real de vagas. O aviso para Christopher e Bianca sai 5 vagas antes.
+         NOME_ATENDENTE: quem assina os avisos internos. Os textos para cliente usam "W7M" e "equipe". */
+      var PRECO_ACAO = 'R$ 390';
+      var PRECO_NORMAL = 'R$ 650';
+      var VAGAS_TOTAL = 30;
+      var NOME_ATENDENTE = 'Thaís';
+
+      var VAGAS_AVISO = Math.max(VAGAS_TOTAL - 5, 1);
+      var VAGAS_KEY = 'w7m-realinhamento-nov26-vagas';
+
+      function setAll(selector, value) {
+        document.querySelectorAll(selector).forEach(function (el) { el.textContent = value; });
+      }
+
+      setAll('.preco-acao', PRECO_ACAO);
+      setAll('.preco-normal', PRECO_NORMAL);
+      setAll('.nome-atendente', NOME_ATENDENTE);
+      setAll('.vagas-total', VAGAS_TOTAL);
+      setAll('.vagas-aviso', VAGAS_AVISO);
+      setAll('.vagas-faltam-aviso', VAGAS_TOTAL - VAGAS_AVISO);
+
+      /* ===== Contador de vagas (salvo no navegador, localStorage) ===== */
+      function lerVagas() {
+        try { return JSON.parse(localStorage.getItem(VAGAS_KEY)) || {}; } catch (e) { return {}; }
+      }
+      function salvarVagas(dados) {
+        try { localStorage.setItem(VAGAS_KEY, JSON.stringify(dados)); } catch (e) {}
+      }
+      function atualizarContador() {
+        var dados = lerVagas();
+        var feitas = 0;
+        for (var i = 1; i <= VAGAS_TOTAL; i++) { if (dados['v' + i] && dados['v' + i].ok) feitas++; }
+        var restam = Math.max(VAGAS_TOTAL - feitas, 0);
+        var frase = restam === 1 ? 'resta 1 vaga' : 'restam ' + restam + ' vagas';
+        var curto = restam === 0 ? 'Vagas esgotadas' : frase.charAt(0).toUpperCase() + frase.slice(1);
+        setAll('.vagas-frase', frase);
+        setAll('.vagas-status-curto', curto);
+        setAll('.vagas-status', restam === 0 ? 'Vagas esgotadas (' + VAGAS_TOTAL + ' de ' + VAGAS_TOTAL + ')' : curto + ' de ' + VAGAS_TOTAL);
+        setAll('.vagas-agendadas', feitas);
+        document.getElementById('vagasPill').classList.toggle('esgotado', restam === 0);
+        document.getElementById('alertaAviso').classList.toggle('show', feitas >= VAGAS_AVISO && feitas < VAGAS_TOTAL);
+        document.getElementById('alertaFechou').classList.toggle('show', feitas >= VAGAS_TOTAL);
+      }
+      function montarVagas() {
+        var lista = document.getElementById('vagasLista');
+        var dados = lerVagas();
+        for (var i = 1; i <= VAGAS_TOTAL; i++) {
+          (function (n) {
+            var d = dados['v' + n] || {};
+            var item = document.createElement('label');
+            item.className = 'vaga-item' + (d.ok ? ' ok' : '');
+            item.innerHTML = '<input type="checkbox" aria-label="Vaga ' + n + '"><span class="vaga-num">' + n + '</span><input type="text" placeholder="@ ou nome, e o dia" aria-label="Cliente da vaga ' + n + '">';
+            var cb = item.querySelector('input[type=checkbox]');
+            var tx = item.querySelector('input[type=text]');
+            cb.checked = !!d.ok;
+            tx.value = d.nome || '';
+            function guardar() {
+              var atual = lerVagas();
+              atual['v' + n] = { ok: cb.checked, nome: tx.value };
+              salvarVagas(atual);
+              item.classList.toggle('ok', cb.checked);
+              atualizarContador();
+            }
+            cb.addEventListener('change', guardar);
+            tx.addEventListener('input', guardar);
+            lista.appendChild(item);
+          })(i);
+        }
+        var espera = document.getElementById('listaEspera');
+        espera.value = dados.espera || '';
+        espera.addEventListener('input', function () {
+          var atual = lerVagas();
+          atual.espera = espera.value;
+          salvarVagas(atual);
+        });
+        atualizarContador();
+      }
+      montarVagas();
+
+      /* ===== Navegação ===== */
       var home = document.getElementById('homeView');
       var phaseViews = Array.prototype.slice.call(document.querySelectorAll('.phase-view'));
-      var phaseButtons = Array.prototype.slice.call(document.querySelectorAll('[data-phase]'));
       var toast = document.getElementById('copyToast');
       var toastTimer;
-
-      // Prazo do valor da ação para quem já conversou. Para mudar a data no guia todo, troque só aqui.
-      var PRAZO_OFERTA = '15/10';
-      document.querySelectorAll('.prazo-oferta').forEach(function (el) { el.textContent = PRAZO_OFERTA; });
+      var TITULO = 'Guia do realinhamento | W7M New Concept Barra';
 
       function scrollTop() {
         window.scrollTo({ top: 0, behavior: 'auto' });
       }
 
+      function setPanel(button, open) {
+        var panel = document.getElementById(button.getAttribute('aria-controls'));
+        button.setAttribute('aria-expanded', String(open));
+        panel.hidden = !open;
+        button.querySelector('.toggle-hint').firstChild.nodeValue = open ? 'Fechar ' : 'Abrir ';
+      }
+
+      function openPanel(panelId) {
+        var button = document.querySelector('[aria-controls="' + panelId + '"]');
+        if (!button) return;
+        setPanel(button, true);
+        var card = button.closest('.script-card');
+        var y = card.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: Math.max(y, 0), behavior: 'auto' });
+      }
+
       function showHome(updateHistory) {
         phaseViews.forEach(function (view) { view.hidden = true; });
         home.hidden = false;
-        document.title = 'Guia comercial da Taís | W7M Barra da Tijuca';
+        document.title = TITULO;
         if (updateHistory) {
           history.pushState({ view: 'home' }, '', window.location.pathname + window.location.search);
         }
         scrollTop();
       }
 
-      function showPhase(id, updateHistory) {
+      function showPhase(id, updateHistory, panelId) {
         var target = document.getElementById('phase-' + id);
         if (!target) return;
         home.hidden = true;
         phaseViews.forEach(function (view) { view.hidden = view !== target; });
-        document.title = target.getAttribute('data-title') + ' | Guia comercial da Taís';
+        document.title = target.getAttribute('data-title') + ' | Guia do realinhamento W7M';
         if (updateHistory) {
           history.pushState({ view: id }, '', '#' + id);
         }
         scrollTop();
         var backButton = target.querySelector('.back-button');
         if (backButton) backButton.focus({ preventScroll: true });
+        if (panelId) openPanel(panelId);
       }
 
-      phaseButtons.forEach(function (button) {
-        button.addEventListener('click', function () { showPhase(button.getAttribute('data-phase'), true); });
+      document.querySelectorAll('[data-phase]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          showPhase(button.getAttribute('data-phase'), true, button.getAttribute('data-open'));
+        });
       });
 
       document.querySelectorAll('.back-button').forEach(function (button) {
@@ -1047,26 +1429,23 @@ Se precisar falar com a gente, pode responder por aqui.</p>
 
       document.querySelectorAll('.script-toggle').forEach(function (button) {
         button.addEventListener('click', function () {
-          var panel = document.getElementById(button.getAttribute('aria-controls'));
-          var expanded = button.getAttribute('aria-expanded') === 'true';
-          button.setAttribute('aria-expanded', String(!expanded));
-          panel.hidden = expanded;
-          var label = button.querySelector('.toggle-hint');
-          label.firstChild.nodeValue = expanded ? 'Abrir ' : 'Fechar ';
+          setPanel(button, button.getAttribute('aria-expanded') !== 'true');
         });
       });
 
+      /* ===== Copiar ===== */
       function showCopied(button) {
-        var original = button.textContent;
+        if (!button.hasAttribute('data-label')) button.setAttribute('data-label', button.textContent);
         button.textContent = 'Copiado';
         button.classList.add('copied');
         toast.hidden = false;
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(function () {
-          button.textContent = original;
+        clearTimeout(button._timer);
+        button._timer = setTimeout(function () {
+          button.textContent = button.getAttribute('data-label');
           button.classList.remove('copied');
-          toast.hidden = true;
         }, 1800);
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.hidden = true; }, 1800);
       }
 
       function fallbackCopy(text, button) {
@@ -1074,11 +1453,15 @@ Se precisar falar com a gente, pode responder por aqui.</p>
         textarea.value = text;
         textarea.setAttribute('readonly', '');
         textarea.style.position = 'fixed';
+        textarea.style.top = '0';
+        textarea.style.left = '0';
         textarea.style.opacity = '0';
         document.body.appendChild(textarea);
         textarea.select();
         try {
           if (document.execCommand('copy')) showCopied(button);
+        } catch (e) {
+          /* sem cópia disponível: o texto continua visível para copiar à mão */
         } finally {
           document.body.removeChild(textarea);
         }
